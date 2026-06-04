@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -301,20 +302,51 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
 }
 .report-cta-title em{font-style:italic;color:var(--gold)}
 .report-cta-sub{font-size:14px;color:rgba(250,250,248,0.45);margin-bottom:32px;line-height:1.7}
-.report-cta-btn{
+.report-cta-eyebrow{
+  font-size:10px;font-weight:500;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--gold);
+  display:block;margin-bottom:14px;
+}
+.report-cta-btns{
+  display:flex;gap:14px;justify-content:center;
+  flex-wrap:wrap;margin-top:8px;
+}
+.report-cta-btn-primary{
   background:var(--gold);color:var(--black);
   font-family:var(--sans);font-size:15px;font-weight:700;
-  padding:18px 48px;border:none;cursor:pointer;
+  padding:18px 36px;border:none;cursor:pointer;
   letter-spacing:0.02em;transition:all 0.2s;
   display:inline-block;text-decoration:none;
 }
-.report-cta-btn:hover{background:#dbb85a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.3)}
+.report-cta-btn-primary:hover{background:#dbb85a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.3)}
+.report-cta-btn-secondary{
+  background:transparent;color:var(--white);
+  font-family:var(--sans);font-size:15px;font-weight:500;
+  padding:18px 32px;border:1px solid rgba(255,255,255,0.2);cursor:pointer;
+  letter-spacing:0.02em;transition:all 0.2s;
+  text-decoration:none;
+}
+.report-cta-btn-secondary:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.05)}
 .report-social-proof{
   margin-top:24px;font-size:12px;color:rgba(250,250,248,0.3);
 }
 
 /* Spacers */
 .report-spacer{height:32px}
+
+
+/* ── PRINT / PDF ── */
+@media print {
+  #screen-landing, #screen-q { display: none !important; }
+  #screen-report { display: block !important; }
+  .report-cta-btns { display: none; }
+  .report-cta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .report-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .dim-bar-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .dim-insight-icon { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .gap-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
 
 /* ── RESPONSIVE ── */
 @media(max-width:600px){
@@ -646,10 +678,15 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
 
   <!-- CTA -->
   <div class="report-cta">
-    <div class="report-cta-title">The gap is closeable.<br>But it needs <em>a plan.</em></div>
-    <p class="report-cta-sub">A Yocket Elite counsellor will walk you through exactly what needs to happen — and when. Free, no commitment.</p>
-    <a class="report-cta-btn" href="#" onclick="alert('→ This would open Calendly booking')">Book a free call to get your plan →</a>
-    <p class="report-social-proof">1000+ families have used this plan to get into Cornell, Stanford, Johns Hopkins and more.</p>
+    <div class="report-cta-eyebrow">What happens next</div>
+    <div class="report-cta-title">Every gap you just saw<br>has <em>a fix.</em></div>
+    <p class="report-cta-sub">This score is a diagnosis. The plan is what closes the gap — and that's built in a conversation with a Yocket Elite counsellor who has helped 1000+ students get into Cornell, Stanford, Johns Hopkins and more.</p>
+    <p class="report-cta-sub" style="margin-top:8px;font-style:italic;color:rgba(250,250,248,0.35)">Free. No commitment. 30 minutes.</p>
+    <div class="report-cta-btns">
+      <a class="report-cta-btn report-cta-btn-primary" href="https://calendly.com/sandesh-vp-yocket/new-meeting" target="_blank">Book a call with a Yocket counsellor →</a>
+      <button class="report-cta-btn report-cta-btn-secondary" onclick="downloadReport()">Save as PDF ↓</button>
+    </div>
+    <p class="report-social-proof">1000+ families · Cornell · Stanford · Johns Hopkins · Dartmouth · MIT</p>
   </div>
 
 </div>
@@ -938,6 +975,15 @@ function generateReport() {
 
   // Insights
   document.getElementById('insight-cards').innerHTML = buildInsights(scores);
+}
+
+function downloadReport() {
+  // Use browser print to PDF
+  const child = answers['child-name'] || 'Profile';
+  const originalTitle = document.title;
+  document.title = 'Yocket Elite · ' + child + ' · Ivy Profile Score';
+  window.print();
+  document.title = originalTitle;
 }
 
 function animateBar(barId, scoreId, score, max) {
