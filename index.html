@@ -7,348 +7,109 @@
 <title>Ivy Profile Score | Yocket Elite</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root {
-  --black: #0a0a0a;
-  --white: #fafaf8;
-  --cream: #f5f3ee;
-  --gold: #c9a84c;
-  --gold-lt: rgba(201,168,76,0.15);
-  --mid: #6a6a62;
-  --border: rgba(10,10,10,0.1);
-  --red: #c0392b;
-  --amber: #d4820a;
-  --green: #2e7d52;
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans: 'DM Sans', system-ui, sans-serif;
-}
+:root{--black:#0a0a0a;--white:#fafaf8;--cream:#f5f3ee;--gold:#c9a84c;--mid:#6a6a62;--border:rgba(10,10,10,0.1);--red:#c0392b;--amber:#d4820a;--green:#2e7d52;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--white);color:var(--black);min-height:100vh;overflow-x:hidden}
-
-/* ── SCREENS ── */
 .screen{display:none;min-height:100vh;animation:fadeIn 0.4s ease}
 .screen.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── SCREEN 1: LANDING ── */
-#screen-landing{
-  background:var(--black);
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;padding:60px 24px;
-  position:relative;overflow:hidden;
-}
+#screen-landing{background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px;position:relative;overflow:hidden}
 #screen-landing.active{display:flex}
-.landing-glow{
-  position:absolute;top:-100px;left:50%;transform:translateX(-50%);
-  width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,168,76,0.12) 0%,transparent 70%);
-  pointer-events:none;
-}
-.landing-badge{
-  font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--gold);border:1px solid rgba(201,168,76,0.3);
-  padding:6px 16px;margin-bottom:36px;
-  animation:fadeIn 0.5s ease both;
-}
-.landing-h1{
-  font-family:var(--serif);font-size:clamp(40px,7vw,80px);
-  font-weight:500;line-height:1.05;letter-spacing:-0.02em;
-  color:var(--white);max-width:700px;
-  animation:fadeIn 0.5s 0.1s ease both;
-}
+.landing-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.12) 0%,transparent 70%);pointer-events:none}
+.landing-badge{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.3);padding:6px 16px;margin-bottom:36px;animation:fadeIn 0.5s ease both}
+.landing-h1{font-family:var(--serif);font-size:clamp(40px,7vw,80px);font-weight:500;line-height:1.05;letter-spacing:-0.02em;color:var(--white);max-width:700px;animation:fadeIn 0.5s 0.1s ease both}
 .landing-h1 em{font-style:italic;color:var(--gold)}
-.landing-sub{
-  margin-top:20px;font-size:16px;color:rgba(250,250,248,0.5);
-  max-width:420px;line-height:1.75;
-  animation:fadeIn 0.5s 0.2s ease both;
-}
-.landing-price{
-  margin-top:36px;display:flex;align-items:center;gap:12px;
-  animation:fadeIn 0.5s 0.3s ease both;
-}
-.price-tag{
-  font-family:var(--serif);font-size:48px;font-weight:600;
-  color:var(--gold);letter-spacing:-0.02em;
-}
-.price-original{
-  font-size:18px;color:rgba(250,250,248,0.3);
-  text-decoration:line-through;
-}
-.price-off{
-  font-size:12px;font-weight:500;background:var(--gold);
-  color:var(--black);padding:3px 8px;
-}
-.landing-btn{
-  margin-top:32px;
-  background:var(--gold);color:var(--black);
-  font-family:var(--sans);font-size:15px;font-weight:600;
-  padding:18px 48px;border:none;cursor:pointer;
-  letter-spacing:0.02em;
-  transition:all 0.2s;
-  animation:fadeIn 0.5s 0.4s ease both;
-}
+.landing-sub{margin-top:20px;font-size:16px;color:rgba(250,250,248,0.5);max-width:420px;line-height:1.75;animation:fadeIn 0.5s 0.2s ease both}
+.landing-price{margin-top:36px;display:flex;align-items:center;gap:12px;animation:fadeIn 0.5s 0.3s ease both}
+.price-tag{font-family:var(--serif);font-size:48px;font-weight:600;color:var(--gold);letter-spacing:-0.02em}
+.price-original{font-size:18px;color:rgba(250,250,248,0.3);text-decoration:line-through}
+.price-off{font-size:12px;font-weight:500;background:var(--gold);color:var(--black);padding:3px 8px}
+.landing-btn{margin-top:32px;background:var(--gold);color:var(--black);font-family:var(--sans);font-size:15px;font-weight:600;padding:18px 48px;border:none;cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;animation:fadeIn 0.5s 0.4s ease both}
 .landing-btn:hover{background:#dbb85a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.3)}
-.landing-trust{
-  margin-top:32px;font-size:12px;color:rgba(250,250,248,0.3);
-  animation:fadeIn 0.5s 0.5s ease both;
-}
-
-/* ── SCREEN 2: QUESTIONNAIRE ── */
+.landing-trust{margin-top:32px;font-size:12px;color:rgba(250,250,248,0.3);animation:fadeIn 0.5s 0.5s ease both}
 #screen-q{background:var(--white)}
 #screen-q.active{display:block}
-.q-nav{
-  position:sticky;top:0;z-index:50;
-  background:rgba(250,250,248,0.95);backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
-  padding:16px 24px;
-  display:flex;align-items:center;justify-content:space-between;
-}
+.q-nav{position:sticky;top:0;z-index:50;background:rgba(250,250,248,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
 .q-logo{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--black)}
 .q-logo em{font-style:italic;color:var(--gold)}
 .q-progress-wrap{flex:1;max-width:300px;margin:0 24px}
-.q-progress-bar{
-  height:3px;background:var(--border);border-radius:2px;overflow:hidden;
-}
-.q-progress-fill{
-  height:100%;background:var(--gold);
-  transition:width 0.4s ease;width:0%;
-}
+.q-progress-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.q-progress-fill{height:100%;background:var(--gold);transition:width 0.4s ease;width:0%}
 .q-progress-label{font-size:11px;color:var(--mid);margin-top:4px;text-align:right}
-
 .q-body{max-width:640px;margin:0 auto;padding:48px 24px 80px}
-.q-section-title{
-  font-family:var(--serif);font-size:28px;font-weight:500;
-  line-height:1.2;margin-bottom:6px;
-}
-.q-section-title em{font-style:italic;color:var(--gold)}
-.q-section-hint{font-size:13px;color:var(--mid);margin-bottom:36px;line-height:1.6}
-
 .q-step{display:none}
 .q-step.active{display:block;animation:fadeIn 0.35s ease}
-
-.q-label{
-  font-size:13px;font-weight:500;color:var(--mid);
-  text-transform:uppercase;letter-spacing:0.1em;
-  margin-bottom:8px;display:block;
-}
-.q-question{
-  font-family:var(--serif);font-size:clamp(20px,3vw,28px);
-  font-weight:600;line-height:1.2;margin-bottom:24px;color:var(--black);
-}
+.q-label{font-size:13px;font-weight:500;color:var(--mid);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;display:block}
+.q-question{font-family:var(--serif);font-size:clamp(20px,3vw,28px);font-weight:600;line-height:1.2;margin-bottom:24px;color:var(--black)}
 .q-question em{font-style:italic;color:var(--gold)}
-
-/* Options grid */
 .q-options{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
-.q-option{
-  border:1px solid var(--border);padding:16px 20px;
-  cursor:pointer;transition:all 0.15s;
-  display:flex;align-items:center;gap:14px;
-  background:var(--white);
-  font-size:15px;color:var(--black);
-  text-align:left;width:100%;
-}
+.q-option{border:1px solid var(--border);padding:16px 20px;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:14px;background:var(--white);font-size:15px;color:var(--black);text-align:left;width:100%}
 .q-option:hover{border-color:rgba(201,168,76,0.5);background:var(--cream)}
-.q-option.selected{
-  border-color:var(--gold);background:rgba(201,168,76,0.08);
-  font-weight:500;
-}
-.q-option-dot{
-  width:18px;height:18px;border-radius:50%;
-  border:1.5px solid var(--border);flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.15s;
-}
-.q-option.selected .q-option-dot{
-  background:var(--gold);border-color:var(--gold);
-}
-.q-option.selected .q-option-dot::after{
-  content:'';width:6px;height:6px;border-radius:50%;background:var(--black);
-}
-
-/* Text input */
-.q-input{
-  width:100%;border:1px solid var(--border);
-  padding:16px 20px;font-family:var(--sans);font-size:15px;
-  color:var(--black);background:var(--white);
-  outline:none;margin-bottom:32px;
-  transition:border-color 0.2s;
-}
+.q-option.selected{border-color:var(--gold);background:rgba(201,168,76,0.08);font-weight:500}
+.q-option-dot{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
+.q-option.selected .q-option-dot{background:var(--gold);border-color:var(--gold)}
+.q-option.selected .q-option-dot::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--black)}
+.q-input{width:100%;border:1px solid var(--border);padding:16px 20px;font-family:var(--sans);font-size:15px;color:var(--black);background:var(--white);outline:none;margin-bottom:32px;transition:border-color 0.2s}
 .q-input:focus{border-color:rgba(201,168,76,0.6)}
 .q-input::placeholder{color:rgba(10,10,10,0.3)}
-
-/* Nav buttons */
 .q-nav-btns{display:flex;gap:12px;align-items:center}
-.q-btn-next{
-  background:var(--black);color:var(--white);
-  font-family:var(--sans);font-size:14px;font-weight:500;
-  padding:14px 32px;border:none;cursor:pointer;
-  transition:all 0.2s;letter-spacing:0.02em;
-}
+.q-btn-next{background:var(--black);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:500;padding:14px 32px;border:none;cursor:pointer;transition:all 0.2s;letter-spacing:0.02em}
 .q-btn-next:hover{background:#222;transform:translateY(-1px)}
 .q-btn-next:disabled{background:var(--border);color:var(--mid);cursor:not-allowed;transform:none}
-.q-btn-back{
-  background:none;border:1px solid var(--border);
-  color:var(--mid);font-family:var(--sans);font-size:14px;
-  padding:14px 24px;cursor:pointer;transition:all 0.2s;
-}
+.q-btn-back{background:none;border:1px solid var(--border);color:var(--mid);font-family:var(--sans);font-size:14px;padding:14px 24px;cursor:pointer;transition:all 0.2s}
 .q-btn-back:hover{border-color:var(--mid)}
-
-/* ── SCREEN 3: REPORT ── */
 #screen-report{background:var(--white)}
 #screen-report.active{display:block}
-
-.report-header{
-  background:var(--black);padding:48px 24px 40px;text-align:center;
-}
+.report-header{background:var(--black);padding:48px 24px 40px;text-align:center}
 .report-header-inner{max-width:680px;margin:0 auto}
-.report-eyebrow{
-  font-size:10px;font-weight:500;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--gold);
-  display:block;margin-bottom:12px;
-}
-.report-name{
-  font-family:var(--serif);font-size:clamp(32px,5vw,52px);
-  font-weight:600;font-style:italic;color:var(--white);
-  line-height:1.1;margin-bottom:6px;
-}
+.report-eyebrow{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+.report-name{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:600;font-style:italic;color:var(--white);line-height:1.1;margin-bottom:6px}
 .report-subline{font-size:14px;color:rgba(250,250,248,0.45);margin-bottom:32px}
-
-/* Score dial */
-.score-dial-wrap{
-  display:flex;flex-direction:column;align-items:center;
-  margin:0 auto 28px;
-}
-.score-dial{
-  position:relative;width:160px;height:160px;
-}
+.score-dial-wrap{display:flex;flex-direction:column;align-items:center;margin:0 auto 28px}
+.score-dial{position:relative;width:160px;height:160px}
 .score-dial svg{transform:rotate(-90deg)}
-.score-dial-num{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-}
-.score-big{
-  font-family:var(--serif);font-size:52px;font-weight:600;
-  color:var(--white);line-height:1;letter-spacing:-0.03em;
-}
+.score-dial-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-big{font-family:var(--serif);font-size:52px;font-weight:600;color:var(--white);line-height:1;letter-spacing:-0.03em}
 .score-denom{font-size:14px;color:rgba(250,250,248,0.4);margin-top:2px}
-.score-band{
-  margin-top:12px;font-size:13px;font-weight:500;letter-spacing:0.04em;
-  color:var(--white);
-}
-.score-band-tag{
-  display:inline-block;padding:4px 14px;font-size:11px;
-  font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
-  margin-top:6px;
-}
-
-/* Dimension bars */
-.report-dims{
-  max-width:680px;margin:0 auto;
-  padding:36px 24px 0;
-}
-.dim-row{
-  display:grid;grid-template-columns:1fr 3fr 60px;
-  gap:12px;align-items:center;margin-bottom:20px;
-}
+.score-band{margin-top:12px;font-size:13px;font-weight:500;letter-spacing:0.04em;color:var(--white)}
+.score-band-tag{display:inline-block;padding:4px 14px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-top:6px}
+.report-dims{max-width:680px;margin:0 auto;padding:36px 24px 0}
+.dim-row{display:grid;grid-template-columns:1fr 3fr 60px;gap:12px;align-items:center;margin-bottom:20px}
 .dim-label{font-size:12px;font-weight:500;color:var(--mid);line-height:1.4}
 .dim-bar-wrap{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
 .dim-bar-fill{height:100%;border-radius:3px;transition:width 1s ease}
 .dim-score{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--black);text-align:right}
-
-/* Gap analysis */
-.report-gap{
-  max-width:680px;margin:0 auto;padding:0 24px;
-}
-.report-section-label{
-  font-size:10px;font-weight:500;letter-spacing:0.16em;
-  text-transform:uppercase;color:var(--gold);
-  display:block;margin-bottom:14px;
-}
-.gap-box{
-  border:1px solid var(--border);padding:28px;
-  background:var(--cream);margin-bottom:12px;
-}
+.report-gap{max-width:680px;margin:0 auto;padding:0 24px}
+.report-section-label{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px}
+.gap-box{border:1px solid var(--border);padding:28px;background:var(--cream);margin-bottom:12px}
 .gap-box p{font-size:15px;color:var(--black);line-height:1.8}
 .gap-box strong{font-weight:600;color:var(--black)}
-
-/* Dimension insights */
-.dim-insights{
-  max-width:680px;margin:0 auto;padding:0 24px;
-}
-.dim-insight-card{
-  border:1px solid var(--border);padding:20px 24px;
-  margin-bottom:10px;display:flex;gap:16px;align-items:flex-start;
-}
-.dim-insight-icon{
-  width:36px;height:36px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-size:14px;font-weight:700;
-}
-.dim-insight-body{}
+.dim-insights{max-width:680px;margin:0 auto;padding:0 24px}
+.dim-insight-card{border:1px solid var(--border);padding:20px 24px;margin-bottom:10px;display:flex;gap:16px;align-items:flex-start}
+.dim-insight-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700}
 .dim-insight-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px}
 .dim-insight-text{font-size:13px;color:var(--mid);line-height:1.65}
-
-/* CTA */
-.report-cta{
-  background:var(--black);text-align:center;
-  padding:56px 24px;margin-top:48px;
-}
-.report-cta-title{
-  font-family:var(--serif);font-size:clamp(32px,5vw,52px);
-  font-weight:500;color:var(--white);line-height:1.1;
-  max-width:560px;margin:0 auto 12px;
-}
+.report-cta{background:var(--black);text-align:center;padding:56px 24px;margin-top:48px}
+.report-cta-eyebrow{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px}
+.report-cta-title{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:500;color:var(--white);line-height:1.1;max-width:560px;margin:0 auto 12px}
 .report-cta-title em{font-style:italic;color:var(--gold)}
-.report-cta-sub{font-size:14px;color:rgba(250,250,248,0.45);margin-bottom:32px;line-height:1.7}
-.report-cta-eyebrow{
-  font-size:10px;font-weight:500;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--gold);
-  display:block;margin-bottom:14px;
-}
-.report-cta-btns{
-  display:flex;gap:14px;justify-content:center;
-  flex-wrap:wrap;margin-top:8px;
-}
-.report-cta-btn-primary{
-  background:var(--gold);color:var(--black);
-  font-family:var(--sans);font-size:15px;font-weight:700;
-  padding:18px 36px;border:none;cursor:pointer;
-  letter-spacing:0.02em;transition:all 0.2s;
-  display:inline-block;text-decoration:none;
-}
+.report-cta-sub{font-size:14px;color:rgba(250,250,248,0.45);margin-bottom:20px;line-height:1.7;max-width:480px;margin-left:auto;margin-right:auto}
+.report-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.report-cta-btn-primary{background:var(--gold);color:var(--black);font-family:var(--sans);font-size:15px;font-weight:700;padding:18px 36px;border:none;cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;display:inline-block;text-decoration:none}
 .report-cta-btn-primary:hover{background:#dbb85a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.3)}
-.report-cta-btn-secondary{
-  background:transparent;color:var(--white);
-  font-family:var(--sans);font-size:15px;font-weight:500;
-  padding:18px 32px;border:1px solid rgba(255,255,255,0.2);cursor:pointer;
-  letter-spacing:0.02em;transition:all 0.2s;
-  text-decoration:none;
-}
+.report-cta-btn-secondary{background:transparent;color:var(--white);font-family:var(--sans);font-size:15px;font-weight:500;padding:18px 32px;border:1px solid rgba(255,255,255,0.2);cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;text-decoration:none}
 .report-cta-btn-secondary:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.05)}
-.report-social-proof{
-  margin-top:24px;font-size:12px;color:rgba(250,250,248,0.3);
-}
-
-/* Spacers */
+.report-social-proof{margin-top:24px;font-size:12px;color:rgba(250,250,248,0.3)}
 .report-spacer{height:32px}
-
-
-/* ── PRINT / PDF ── */
-@media print {
-  #screen-landing, #screen-q { display: none !important; }
-  #screen-report { display: block !important; }
-  .report-cta-btns { display: none; }
-  .report-cta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .report-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .dim-bar-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .dim-insight-icon { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .gap-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@media print{
+  #screen-landing,#screen-q{display:none!important}
+  #screen-report{display:block!important}
+  .report-cta-btns{display:none}
+  .report-cta,.report-header,.dim-bar-fill,.dim-insight-icon,.gap-box,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
-
-/* ── RESPONSIVE ── */
 @media(max-width:600px){
   .dim-row{grid-template-columns:1fr;gap:4px}
   .dim-bar-wrap{height:8px}
@@ -360,7 +121,7 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
 </head>
 <body>
 
-<!-- ══ SCREEN 1: LANDING ══ -->
+<!-- SCREEN 1: LANDING -->
 <div class="screen active" id="screen-landing">
   <div class="landing-glow"></div>
   <div class="landing-badge">Yocket Elite · Profile Intelligence</div>
@@ -368,28 +129,24 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
   <p class="landing-sub">A personalised score across 5 dimensions — the same framework Ivy League admissions officers use to evaluate every application.</p>
   <div class="landing-price">
     <div class="price-tag">₹99</div>
-    <div>
-      <div class="price-original">₹399</div>
-      <div class="price-off">75% OFF</div>
-    </div>
+    <div><div class="price-original">₹399</div><div class="price-off">75% OFF</div></div>
   </div>
   <button class="landing-btn" onclick="startQ()">Get my child's score →</button>
   <p class="landing-trust">Instant result · No counsellor call required · Takes 3 minutes</p>
 </div>
 
-<!-- ══ SCREEN 2: QUESTIONNAIRE ══ -->
+<!-- SCREEN 2: QUESTIONNAIRE -->
 <div class="screen" id="screen-q">
   <nav class="q-nav">
     <div class="q-logo">Yocket <em>Elite</em></div>
     <div class="q-progress-wrap">
       <div class="q-progress-bar"><div class="q-progress-fill" id="progressFill"></div></div>
-      <div class="q-progress-label" id="progressLabel">Step 1 of 13</div>
+      <div class="q-progress-label" id="progressLabel">Step 1 of 15</div>
     </div>
   </nav>
-
   <div class="q-body">
 
-    <!-- STEP 1: Parent name -->
+    <!-- 1: Parent name -->
     <div class="q-step active" id="step-1">
       <span class="q-label">About you</span>
       <h2 class="q-question">What is your name?</h2>
@@ -399,7 +156,7 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
       </div>
     </div>
 
-    <!-- STEP 2: Child name -->
+    <!-- 2: Child name -->
     <div class="q-step" id="step-2">
       <span class="q-label">About your child</span>
       <h2 class="q-question">What is your child's name?</h2>
@@ -410,26 +167,49 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
       </div>
     </div>
 
-    <!-- STEP 3: Grade -->
+    <!-- 3: Email -->
     <div class="q-step" id="step-3">
-      <span class="q-label">Academic profile</span>
-      <h2 class="q-question">Which grade is your child<br><em>currently in?</em></h2>
-      <div class="q-options" id="opts-grade">
-        <button class="q-option" onclick="selectOption('grade','8-9',this)"><span class="q-option-dot"></span>Grade 8 or 9</button>
-        <button class="q-option" onclick="selectOption('grade','10',this)"><span class="q-option-dot"></span>Grade 10</button>
-        <button class="q-option" onclick="selectOption('grade','11',this)"><span class="q-option-dot"></span>Grade 11</button>
-        <button class="q-option" onclick="selectOption('grade','12',this)"><span class="q-option-dot"></span>Grade 12</button>
-      </div>
+      <span class="q-label">Contact details</span>
+      <h2 class="q-question">What is your <em>email address?</em></h2>
+      <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.6">We'll send a copy of the report here.</p>
+      <input class="q-input" id="ans-email" type="email" placeholder="your@email.com" oninput="checkText('ans-email','btn-3')"/>
       <div class="q-nav-btns">
         <button class="q-btn-next" id="btn-3" onclick="nextStep(4)" disabled>Continue →</button>
         <button class="q-btn-back" onclick="prevStep(2)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 4: Board -->
+    <!-- 4: Phone -->
     <div class="q-step" id="step-4">
+      <span class="q-label">Contact details</span>
+      <h2 class="q-question">What is your <em>phone number?</em></h2>
+      <input class="q-input" id="ans-phone" type="tel" placeholder="+91 98765 43210" oninput="checkText('ans-phone','btn-4')"/>
+      <div class="q-nav-btns">
+        <button class="q-btn-next" id="btn-4" onclick="nextStep(5)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(3)">← Back</button>
+      </div>
+    </div>
+
+    <!-- 5: Grade -->
+    <div class="q-step" id="step-5">
       <span class="q-label">Academic profile</span>
-      <h2 class="q-question">Which board does your<br>child study under?</h2>
+      <h2 class="q-question">Which grade is your child <em>currently in?</em></h2>
+      <div class="q-options">
+        <button class="q-option" onclick="selectOption('grade','8-9',this)"><span class="q-option-dot"></span>Grade 8 or 9</button>
+        <button class="q-option" onclick="selectOption('grade','10',this)"><span class="q-option-dot"></span>Grade 10</button>
+        <button class="q-option" onclick="selectOption('grade','11',this)"><span class="q-option-dot"></span>Grade 11</button>
+        <button class="q-option" onclick="selectOption('grade','12',this)"><span class="q-option-dot"></span>Grade 12</button>
+      </div>
+      <div class="q-nav-btns">
+        <button class="q-btn-next" id="btn-5" onclick="nextStep(6)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(4)">← Back</button>
+      </div>
+    </div>
+
+    <!-- 6: Board -->
+    <div class="q-step" id="step-6">
+      <span class="q-label">Academic profile</span>
+      <h2 class="q-question">Which board does your child study under?</h2>
       <div class="q-options">
         <button class="q-option" onclick="selectOption('board','CBSE',this)"><span class="q-option-dot"></span>CBSE</button>
         <button class="q-option" onclick="selectOption('board','ICSE',this)"><span class="q-option-dot"></span>ICSE</button>
@@ -438,15 +218,15 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
         <button class="q-option" onclick="selectOption('board','State',this)"><span class="q-option-dot"></span>State board</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-4" onclick="nextStep(5)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(3)">← Back</button>
+        <button class="q-btn-next" id="btn-6" onclick="nextStep(7)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(5)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 5: Score -->
-    <div class="q-step" id="step-5">
+    <!-- 7: Score -->
+    <div class="q-step" id="step-7">
       <span class="q-label">Academic profile</span>
-      <h2 class="q-question" id="score-q-label">What is your child's current<br>or predicted <em>percentage?</em></h2>
+      <h2 class="q-question" id="score-q-label">What is your child's current or predicted <em>percentage?</em></h2>
       <div class="q-options" id="opts-score">
         <button class="q-option" onclick="selectOption('score','95+',this)"><span class="q-option-dot"></span>95% and above</button>
         <button class="q-option" onclick="selectOption('score','90-94',this)"><span class="q-option-dot"></span>90% – 94%</button>
@@ -455,15 +235,15 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
         <button class="q-option" onclick="selectOption('score','below80',this)"><span class="q-option-dot"></span>Below 80%</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-5" onclick="nextStep(6)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(4)">← Back</button>
+        <button class="q-btn-next" id="btn-7" onclick="nextStep(8)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(6)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 6: Stream -->
-    <div class="q-step" id="step-6">
+    <!-- 8: Stream -->
+    <div class="q-step" id="step-8">
       <span class="q-label">Academic profile</span>
-      <h2 class="q-question">What stream is your child<br>in — or planning?</h2>
+      <h2 class="q-question">What stream is your child in — or planning?</h2>
       <div class="q-options">
         <button class="q-option" onclick="selectOption('stream','SciMath',this)"><span class="q-option-dot"></span>Science with Mathematics</button>
         <button class="q-option" onclick="selectOption('stream','SciBio',this)"><span class="q-option-dot"></span>Science with Biology</button>
@@ -472,15 +252,15 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
         <button class="q-option" onclick="selectOption('stream','Undecided',this)"><span class="q-option-dot"></span>Not decided yet</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-6" onclick="nextStep(7)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(5)">← Back</button>
+        <button class="q-btn-next" id="btn-8" onclick="nextStep(9)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(7)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 7: Target universities -->
-    <div class="q-step" id="step-7">
+    <!-- 9: Target -->
+    <div class="q-step" id="step-9">
       <span class="q-label">Ambition</span>
-      <h2 class="q-question">Which universities is<br>your child <em>targeting?</em></h2>
+      <h2 class="q-question">Which universities is your child <em>targeting?</em></h2>
       <div class="q-options">
         <button class="q-option" onclick="selectOption('target','Ivy',this)"><span class="q-option-dot"></span>Ivy League (Harvard, Yale, Princeton…)</button>
         <button class="q-option" onclick="selectOption('target','Top10',this)"><span class="q-option-dot"></span>Top 10 US (MIT, Stanford, UChicago…)</button>
@@ -489,15 +269,15 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
         <button class="q-option" onclick="selectOption('target','Undecided',this)"><span class="q-option-dot"></span>Not sure yet</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-7" onclick="nextStep(8)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(6)">← Back</button>
+        <button class="q-btn-next" id="btn-9" onclick="nextStep(10)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(8)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 8: Activity count -->
-    <div class="q-step" id="step-8">
+    <!-- 10: Activities -->
+    <div class="q-step" id="step-10">
       <span class="q-label">Extracurricular depth</span>
-      <h2 class="q-question">How many structured activities<br>does your child <em>currently have?</em></h2>
+      <h2 class="q-question">How many structured activities does your child <em>currently have?</em></h2>
       <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.6">Clubs, sports, music, coding, volunteering — anything consistent and regular.</p>
       <div class="q-options">
         <button class="q-option" onclick="selectOption('activities','0',this)"><span class="q-option-dot"></span>None yet</button>
@@ -506,15 +286,15 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
         <button class="q-option" onclick="selectOption('activities','5+',this)"><span class="q-option-dot"></span>5 or more</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-8" onclick="nextStep(9)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(7)">← Back</button>
+        <button class="q-btn-next" id="btn-10" onclick="nextStep(11)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(9)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 9: Competitions -->
-    <div class="q-step" id="step-9">
+    <!-- 11: Competitions -->
+    <div class="q-step" id="step-11">
       <span class="q-label">Extracurricular depth</span>
-      <h2 class="q-question">Has your child won any<br><em>external competitions</em> or awards?</h2>
+      <h2 class="q-question">Has your child won any <em>external competitions</em> or awards?</h2>
       <div class="q-options">
         <button class="q-option" onclick="selectOption('competition','None',this)"><span class="q-option-dot"></span>No external recognition yet</button>
         <button class="q-option" onclick="selectOption('competition','School',this)"><span class="q-option-dot"></span>School-level awards</button>
@@ -523,15 +303,15 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
         <button class="q-option" onclick="selectOption('competition','International',this)"><span class="q-option-dot"></span>International recognition</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-9" onclick="nextStep(10)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(8)">← Back</button>
+        <button class="q-btn-next" id="btn-11" onclick="nextStep(12)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(10)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 10: Research / internship -->
-    <div class="q-step" id="step-10">
+    <!-- 12: Research -->
+    <div class="q-step" id="step-12">
       <span class="q-label">Extracurricular depth</span>
-      <h2 class="q-question">Has your child done any internship,<br>research, or <em>published any work?</em></h2>
+      <h2 class="q-question">Has your child done any internship, research, or <em>published any work?</em></h2>
       <div class="q-options">
         <button class="q-option" onclick="selectOption('research','None',this)"><span class="q-option-dot"></span>None yet</button>
         <button class="q-option" onclick="selectOption('research','InProgress',this)"><span class="q-option-dot"></span>Something is in progress</button>
@@ -539,15 +319,15 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
         <button class="q-option" onclick="selectOption('research','Two+',this)"><span class="q-option-dot"></span>Two or more completed</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-10" onclick="nextStep(11)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(9)">← Back</button>
+        <button class="q-btn-next" id="btn-12" onclick="nextStep(13)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(11)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 11: Creative pursuit -->
-    <div class="q-step" id="step-11">
+    <!-- 13: Creative -->
+    <div class="q-step" id="step-13">
       <span class="q-label">Personal profile</span>
-      <h2 class="q-question">Does your child have a creative<br>pursuit they've sustained <em>for 3+ years?</em></h2>
+      <h2 class="q-question">Does your child have a creative pursuit they've sustained <em>for 3+ years?</em></h2>
       <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.6">Music, dance, art, writing, theatre — something with depth and continuity.</p>
       <div class="q-options">
         <button class="q-option" onclick="selectOption('creative','Yes',this)"><span class="q-option-dot"></span>Yes, 3 or more years</button>
@@ -555,32 +335,32 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
         <button class="q-option" onclick="selectOption('creative','No',this)"><span class="q-option-dot"></span>Not yet</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-11" onclick="nextStep(12)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(10)">← Back</button>
+        <button class="q-btn-next" id="btn-13" onclick="nextStep(14)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(12)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 12: Narrative coherence -->
-    <div class="q-step" id="step-12">
+    <!-- 14: Narrative -->
+    <div class="q-step" id="step-14">
       <span class="q-label">Narrative clarity</span>
-      <h2 class="q-question">Are your child's activities<br><em>connected to one theme?</em></h2>
-      <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.6">For example: everything points to medicine, or tech, or social impact — vs. a mix of unrelated things.</p>
+      <h2 class="q-question">Are your child's activities <em>connected to one theme?</em></h2>
+      <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.6">Everything points to medicine, or tech, or social impact — vs. a mix of unrelated things.</p>
       <div class="q-options">
         <button class="q-option" onclick="selectOption('narrative','Strong',this)"><span class="q-option-dot"></span>Yes — everything connects to one direction</button>
         <button class="q-option" onclick="selectOption('narrative','Somewhat',this)"><span class="q-option-dot"></span>Somewhat — there's a loose theme</button>
-        <button class="q-option" onclick="selectOption('narrative','Scattered',this)"><span class="q-option-dot"></span>Not really — it's spread across different areas</button>
+        <button class="q-option" onclick="selectOption('narrative','Scattered',this)"><span class="q-option-dot"></span>Not really — spread across different areas</button>
         <button class="q-option" onclick="selectOption('narrative','Unsure',this)"><span class="q-option-dot"></span>I'm not sure</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-12" onclick="nextStep(13)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(11)">← Back</button>
+        <button class="q-btn-next" id="btn-14" onclick="nextStep(15)" disabled>Continue →</button>
+        <button class="q-btn-back" onclick="prevStep(13)">← Back</button>
       </div>
     </div>
 
-    <!-- STEP 13: Application timeline -->
-    <div class="q-step" id="step-13">
+    <!-- 15: Timeline -->
+    <div class="q-step" id="step-15">
       <span class="q-label">Timeline</span>
-      <h2 class="q-question">When is your child planning<br>to <em>apply to university?</em></h2>
+      <h2 class="q-question">When is your child planning to <em>apply to university?</em></h2>
       <div class="q-options">
         <button class="q-option" onclick="selectOption('timeline','3+',this)"><span class="q-option-dot"></span>3 or more years away (Grade 8 – 9)</button>
         <button class="q-option" onclick="selectOption('timeline','2',this)"><span class="q-option-dot"></span>About 2 years away (Grade 10)</button>
@@ -588,32 +368,26 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
         <button class="q-option" onclick="selectOption('timeline','Now',this)"><span class="q-option-dot"></span>This application cycle (Grade 12)</button>
       </div>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-13" onclick="generateReport()" disabled>Generate my score →</button>
-        <button class="q-btn-back" onclick="prevStep(12)">← Back</button>
+        <button class="q-btn-next" id="btn-15" onclick="generateReport()" disabled>Generate my score →</button>
+        <button class="q-btn-back" onclick="prevStep(14)">← Back</button>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- ══ SCREEN 3: REPORT ══ -->
+<!-- SCREEN 3: REPORT -->
 <div class="screen" id="screen-report">
-
   <div class="report-header">
     <div class="report-header-inner">
       <span class="report-eyebrow">Yocket Elite · Ivy Profile Score</span>
       <div class="report-name" id="report-child-name">—</div>
       <div class="report-subline" id="report-subline">—</div>
-
       <div class="score-dial-wrap">
         <div class="score-dial">
           <svg width="160" height="160" viewBox="0 0 160 160">
             <circle cx="80" cy="80" r="68" stroke="rgba(255,255,255,0.08)" stroke-width="10" fill="none"/>
-            <circle cx="80" cy="80" r="68" id="dialCircle"
-              stroke="#c9a84c" stroke-width="10" fill="none"
-              stroke-dasharray="427" stroke-dashoffset="427"
-              stroke-linecap="round"
-              style="transition:stroke-dashoffset 1.5s ease"/>
+            <circle cx="80" cy="80" r="68" id="dialCircle" stroke="#c9a84c" stroke-width="10" fill="none" stroke-dasharray="427" stroke-dashoffset="427" stroke-linecap="round" style="transition:stroke-dashoffset 1.5s ease"/>
           </svg>
           <div class="score-dial-num">
             <div class="score-big" id="report-score-num">0</div>
@@ -626,81 +400,75 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
     </div>
   </div>
 
-  <!-- Dimension bars -->
   <div class="report-dims">
     <div style="font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block">Score Breakdown</div>
-    <div class="dim-row">
-      <div class="dim-label">Academic<br>Strength</div>
-      <div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-academic" style="width:0%;background:#c9a84c"></div></div>
-      <div class="dim-score" id="score-academic">0/20</div>
-    </div>
-    <div class="dim-row">
-      <div class="dim-label">Extracurricular<br>Depth</div>
-      <div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-ec" style="width:0%;background:#c9a84c"></div></div>
-      <div class="dim-score" id="score-ec">0/20</div>
-    </div>
-    <div class="dim-row">
-      <div class="dim-label">Personal<br>Narrative</div>
-      <div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-narrative" style="width:0%;background:#c9a84c"></div></div>
-      <div class="dim-score" id="score-narrative">0/20</div>
-    </div>
-    <div class="dim-row">
-      <div class="dim-label">Sustained<br>Commitment</div>
-      <div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-commit" style="width:0%;background:#c9a84c"></div></div>
-      <div class="dim-score" id="score-commit">0/10</div>
-    </div>
-    <div class="dim-row">
-      <div class="dim-label">Competitive<br>Gap</div>
-      <div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-gap" style="width:0%;background:#c9a84c"></div></div>
-      <div class="dim-score" id="score-gap">0/30</div>
-    </div>
+    <div class="dim-row"><div class="dim-label">Academic<br>Strength</div><div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-academic" style="width:0%;background:#c9a84c"></div></div><div class="dim-score" id="score-academic">0/20</div></div>
+    <div class="dim-row"><div class="dim-label">Extracurricular<br>Depth</div><div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-ec" style="width:0%;background:#c9a84c"></div></div><div class="dim-score" id="score-ec">0/20</div></div>
+    <div class="dim-row"><div class="dim-label">Personal<br>Narrative</div><div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-narrative" style="width:0%;background:#c9a84c"></div></div><div class="dim-score" id="score-narrative">0/20</div></div>
+    <div class="dim-row"><div class="dim-label">Sustained<br>Commitment</div><div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-commit" style="width:0%;background:#c9a84c"></div></div><div class="dim-score" id="score-commit">0/10</div></div>
+    <div class="dim-row"><div class="dim-label">Competitive<br>Gap</div><div class="dim-bar-wrap"><div class="dim-bar-fill" id="bar-gap" style="width:0%;background:#c9a84c"></div></div><div class="dim-score" id="score-gap">0/30</div></div>
   </div>
 
   <div class="report-spacer"></div>
   <hr style="border:none;border-top:1px solid var(--border);margin:0 24px"/>
   <div class="report-spacer"></div>
 
-  <!-- Gap analysis -->
   <div class="report-gap">
     <span class="report-section-label">Gap Analysis</span>
-    <div class="gap-box" id="gap-analysis-box">
-      <p id="gap-analysis-text">—</p>
-    </div>
+    <div class="gap-box"><p id="gap-analysis-text">—</p></div>
   </div>
-
   <div class="report-spacer"></div>
-
-  <!-- Dimension insights -->
   <div class="dim-insights">
     <span class="report-section-label">What Each Score Means</span>
     <div id="insight-cards"></div>
   </div>
 
-  <!-- CTA -->
   <div class="report-cta">
     <div class="report-cta-eyebrow">What happens next</div>
     <div class="report-cta-title">Every gap you just saw<br>has <em>a fix.</em></div>
-    <p class="report-cta-sub">This score is a diagnosis. The plan is what closes the gap — and that's built in a conversation with a Yocket Elite counsellor who has helped 1000+ students get into Cornell, Stanford, Johns Hopkins and more.</p>
-    <p class="report-cta-sub" style="margin-top:8px;font-style:italic;color:rgba(250,250,248,0.35)">Free. No commitment. 30 minutes.</p>
+    <p class="report-cta-sub">This score is a diagnosis. The plan is what closes the gap — built in a 30-minute conversation with a Yocket Elite counsellor.</p>
+    <p class="report-cta-sub">Free. No commitment.</p>
     <div class="report-cta-btns">
       <a class="report-cta-btn report-cta-btn-primary" href="https://calendly.com/sandesh-vp-yocket/new-meeting" target="_blank">Book a call with a Yocket counsellor →</a>
       <button class="report-cta-btn report-cta-btn-secondary" onclick="downloadReport()">Save as PDF ↓</button>
     </div>
     <p class="report-social-proof">1000+ families · Cornell · Stanford · Johns Hopkins · Dartmouth · MIT</p>
   </div>
-
 </div>
 
 <script>
-// ── STATE ──
+const SUPABASE_URL = 'https://mtwjsfttmzoecxdnqpcy.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_vxKT31zRCbVMybh1Kpa1iw_GqOFSBT4';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 const answers = {};
 let currentStep = 1;
-const TOTAL_STEPS = 13;
+const TOTAL_STEPS = 15;
 
-// ── NAVIGATION ──
-function startQ() {
-  showScreen('screen-q');
+async function saveSubmission(scores) {
+  try {
+    const { error } = await sb.from('submissions').insert([{
+      parent_name: answers['parent-name'] || '',
+      child_name: answers['child-name'] || '',
+      email: answers['email'] || '',
+      phone: answers['phone'] || '',
+      grade: answers.grade || '',
+      board: answers.board || '',
+      target: answers.target || '',
+      total_score: scores.total,
+      academic: scores.academic,
+      extracurricular: scores.ec,
+      narrative: scores.narrative,
+      commitment: scores.commit,
+      gap: scores.gap,
+      created_at: new Date().toISOString()
+    }]);
+    if (error) console.error('Supabase error:', error);
+    else console.log('Saved ✓');
+  } catch(e) { console.error('Save failed:', e); }
 }
+
+function startQ() { showScreen('screen-q'); }
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -713,18 +481,15 @@ function showStep(n) {
   if (el) el.classList.add('active');
   currentStep = n;
   updateProgress();
-
-  // Dynamic label for IB score
-  if (n === 5) {
-    const board = answers.board;
+  if (n === 7) {
     const lbl = document.getElementById('score-q-label');
-    if (board === 'IB') {
+    if (answers.board === 'IB') {
       document.getElementById('opts-score').innerHTML = `
         <button class="q-option" onclick="selectOption('score','40-42',this)"><span class="q-option-dot"></span>40 – 42 (predicted)</button>
         <button class="q-option" onclick="selectOption('score','37-39',this)"><span class="q-option-dot"></span>37 – 39</button>
         <button class="q-option" onclick="selectOption('score','33-36',this)"><span class="q-option-dot"></span>33 – 36</button>
         <button class="q-option" onclick="selectOption('score','below33',this)"><span class="q-option-dot"></span>Below 33</button>`;
-      lbl.innerHTML = 'What is your child\'s predicted<br><em>IB score?</em>';
+      lbl.innerHTML = "What is your child's predicted <em>IB score?</em>";
     } else {
       document.getElementById('opts-score').innerHTML = `
         <button class="q-option" onclick="selectOption('score','95+',this)"><span class="q-option-dot"></span>95% and above</button>
@@ -732,11 +497,10 @@ function showStep(n) {
         <button class="q-option" onclick="selectOption('score','85-89',this)"><span class="q-option-dot"></span>85% – 89%</button>
         <button class="q-option" onclick="selectOption('score','80-84',this)"><span class="q-option-dot"></span>80% – 84%</button>
         <button class="q-option" onclick="selectOption('score','below80',this)"><span class="q-option-dot"></span>Below 80%</button>`;
-      lbl.innerHTML = 'What is your child\'s current<br>or predicted <em>percentage?</em>';
+      lbl.innerHTML = "What is your child's current or predicted <em>percentage?</em>";
     }
-    // Clear previous answer if board changed
     delete answers.score;
-    document.getElementById('btn-5').disabled = true;
+    document.getElementById('btn-7').disabled = true;
   }
 }
 
@@ -749,252 +513,130 @@ function updateProgress() {
   document.getElementById('progressLabel').textContent = `Step ${currentStep} of ${TOTAL_STEPS}`;
 }
 
-// ── INPUTS ──
 function selectOption(key, val, el) {
   answers[key] = val;
-  const container = el.closest('.q-options') || el.parentElement;
-  container.querySelectorAll('.q-option').forEach(o => o.classList.remove('selected'));
+  el.closest('.q-options').querySelectorAll('.q-option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
-  const btnId = 'btn-' + currentStep;
-  const btn = document.getElementById(btnId);
+  const btn = document.getElementById('btn-' + currentStep);
   if (btn) btn.disabled = false;
 }
 
 function checkText(inputId, btnId) {
   const val = document.getElementById(inputId).value.trim();
-  answers[inputId.replace('ans-','')] = val;
+  answers[inputId.replace('ans-', '')] = val;
   document.getElementById(btnId).disabled = val.length < 2;
 }
 
-// ── SCORING ALGORITHM ──
 function calcScore() {
-  let academic = 0, ec = 0, narrative = 0, commit = 0, gap = 0;
-
-  // 1. ACADEMIC (max 20)
-  const scoreMap = {
-    '95+':20,'90-94':16,'85-89':12,'80-84':8,'below80':4,
-    '40-42':20,'37-39':16,'33-36':12,'below33':6
-  };
+  let academic, ec, narrative, commit, gap;
+  const scoreMap = {'95+':20,'90-94':16,'85-89':12,'80-84':8,'below80':4,'40-42':20,'37-39':16,'33-36':12,'below33':6};
   academic = scoreMap[answers.score] || 10;
   if (answers.board === 'IB') academic = Math.min(academic + 1, 20);
   if (answers.board === 'State') academic = Math.max(academic - 1, 2);
   if (answers.target === 'Ivy') academic = Math.max(academic - 2, 2);
   academic = Math.min(Math.max(academic, 2), 20);
-
-  // 2. EXTRACURRICULAR (max 20)
   const actBase = {'0':1,'1-2':5,'3-4':10,'5+':13}[answers.activities] || 5;
   const compAdd = {'None':0,'School':2,'CityState':4,'National':6,'International':7}[answers.competition] || 0;
   const resAdd  = {'None':0,'InProgress':1,'One':3,'Two+':4}[answers.research] || 0;
   ec = Math.min(actBase + compAdd + resAdd, 20);
-
-  // 3. NARRATIVE (max 20)
-  const narBase = {'Strong':14,'Somewhat':9,'Scattered':5,'Unsure':3}[answers.narrative] || 5;
-  narrative = Math.min(narBase, 20);
-
-  // 4. SUSTAINED COMMITMENT (max 10)
+  narrative = Math.min({'Strong':14,'Somewhat':9,'Scattered':5,'Unsure':3}[answers.narrative] || 5, 20);
   const creatMap = {'Yes':7,'Recent':4,'No':0}[answers.creative] || 0;
-  commit = Math.min(creatMap + (answers.competition === 'National' || answers.competition === 'International' ? 3 : 0), 10);
-
-  // 5. COMPETITIVE GAP (max 30)
+  commit = Math.min(creatMap + (['National','International'].includes(answers.competition) ? 3 : 0), 10);
   gap = 15;
-  const targetMod = {'Undecided':0,'Top25':-2,'UK':-2,'Top10':-5,'Ivy':-8}[answers.target] || 0;
-  const timeMod   = {'3+':10,'2':6,'1':2,'Now':-3}[answers.timeline] || 0;
-  const boardMod  = {'IB':2,'IGCSE':1,'CBSE':0,'ICSE':0,'State':-1}[answers.board] || 0;
-  gap = Math.min(Math.max(gap + targetMod + timeMod + boardMod, 2), 30);
-
-  const total = academic + ec + narrative + commit + gap;
-  return { total, academic, ec, narrative, commit, gap };
+  gap += {'Undecided':0,'Top25':-2,'UK':-2,'Top10':-5,'Ivy':-8}[answers.target] || 0;
+  gap += {'3+':10,'2':6,'1':2,'Now':-3}[answers.timeline] || 0;
+  gap += {'IB':2,'IGCSE':1,'CBSE':0,'ICSE':0,'State':-1}[answers.board] || 0;
+  gap = Math.min(Math.max(gap, 2), 30);
+  return { total: academic+ec+narrative+commit+gap, academic, ec, narrative, commit, gap };
 }
 
-function getBand(total) {
-  if (total >= 85) return {
-    label: 'Strong Foundation',
-    tag: '✦ Competitive',
-    color: '#2e7d52', tagBg: '#e8f5ee', tagColor: '#2e7d52',
-    dialColor: '#2e7d52'
-  };
-  if (total >= 70) return {
-    label: 'Promising Profile',
-    tag: '→ Gaps to close',
-    color: '#c9a84c', tagBg: 'rgba(201,168,76,0.15)', tagColor: '#8a6010',
-    dialColor: '#c9a84c'
-  };
-  if (total >= 55) return {
-    label: 'Developing Profile',
-    tag: '⚠ Plan needed now',
-    color: '#d4820a', tagBg: '#fef3e2', tagColor: '#9a5f00',
-    dialColor: '#d4820a'
-  };
-  if (total >= 40) return {
-    label: 'Early Stage',
-    tag: '↑ Start immediately',
-    color: '#c0392b', tagBg: '#fdeaea', tagColor: '#8b0000',
-    dialColor: '#c0392b'
-  };
-  return {
-    label: 'Foundation Stage',
-    tag: '! Intervention needed',
-    color: '#8b0000', tagBg: '#fdeaea', tagColor: '#8b0000',
-    dialColor: '#c0392b'
-  };
+function getBand(t) {
+  if (t >= 85) return {label:'Strong Foundation',tag:'✦ Competitive',tagBg:'#e8f5ee',tagColor:'#2e7d52',dialColor:'#2e7d52'};
+  if (t >= 70) return {label:'Promising Profile',tag:'→ Gaps to close',tagBg:'rgba(201,168,76,0.15)',tagColor:'#8a6010',dialColor:'#c9a84c'};
+  if (t >= 55) return {label:'Developing Profile',tag:'⚠ Plan needed now',tagBg:'#fef3e2',tagColor:'#9a5f00',dialColor:'#d4820a'};
+  if (t >= 40) return {label:'Early Stage',tag:'↑ Start immediately',tagBg:'#fdeaea',tagColor:'#8b0000',dialColor:'#c0392b'};
+  return {label:'Foundation Stage',tag:'! Intervention needed',tagBg:'#fdeaea',tagColor:'#8b0000',dialColor:'#c0392b'};
 }
 
 function buildGapText(scores) {
   const child = answers['child-name'] || 'Your child';
   const grade = answers.grade || '10';
   const target = {'Ivy':'Ivy League','Top10':'Top 10 US','Top25':'Top 25 US','UK':'UK Russell Group','Undecided':'top global universities'}[answers.target] || 'top universities';
-  const { total, academic, ec, narrative, commit } = scores;
-
-  let gaps = [];
-  if (academic < 12) gaps.push('academic scores are below the typical admit threshold');
-  if (ec < 10) gaps.push('extracurricular depth needs significant development');
-  if (narrative < 8) gaps.push('activities are not yet connected to a clear story or direction');
-  if (commit < 4) gaps.push('there is no sustained creative or long-term commitment visible');
-
   const timeline = {'3+':'more than 3 years','2':'about 2 years','1':'about 1 year','Now':'less than 1 year'}[answers.timeline] || 'some time';
-
+  let gaps = [];
+  if (scores.academic < 12) gaps.push('academic scores are below the typical admit threshold');
+  if (scores.ec < 10) gaps.push('extracurricular depth needs significant development');
+  if (scores.narrative < 8) gaps.push('activities are not yet connected to a clear story or direction');
+  if (scores.commit < 4) gaps.push('there is no sustained creative or long-term commitment visible');
   let text = `<strong>${child}</strong> is in Grade ${grade === '8-9' ? '8/9' : grade} with ${timeline} before applying to ${target}. `;
-
-  if (gaps.length === 0) {
-    text += `The profile is already competitive across most dimensions. The plan should focus on sharpening the narrative and targeting the right opportunities to separate from the competition.`;
-  } else if (gaps.length === 1) {
-    text += `The profile is largely strong, but ${gaps[0]}. A targeted plan can close this gap before applications open.`;
-  } else {
-    const last = gaps.pop();
-    text += `Key gaps: ${gaps.join(', ')}, and ${last}. With ${timeline} remaining, a structured plan can address each of these systematically.`;
-  }
+  if (!gaps.length) text += 'The profile is already competitive. The plan should focus on sharpening the narrative and targeting the right opportunities.';
+  else if (gaps.length === 1) text += `The profile is largely strong, but ${gaps[0]}. A targeted plan can close this gap before applications open.`;
+  else { const last = gaps.pop(); text += `Key gaps: ${gaps.join(', ')}, and ${last}. With ${timeline} remaining, a structured plan can address each systematically.`; }
   return text;
 }
 
 function buildInsights(scores) {
-  const { academic, ec, narrative, commit, gap } = scores;
-  const insights = [
-    {
-      score: academic, max: 20,
-      title: 'Academic Strength',
-      good: 'Academic profile is strong relative to target university benchmarks.',
-      bad: 'Scores are below what Ivy League and top universities typically expect. This is the hardest gap to close — it requires consistent effort over time.',
-      color: '#c9a84c', icon: '①'
-    },
-    {
-      score: ec, max: 20,
-      title: 'Extracurricular Depth',
-      good: 'Strong external recognition and activity depth. This will stand out in the application.',
-      bad: 'Activities need more depth, external recognition, or research-level work. Ivy League readers rate a "1" only for national-level achievement.',
-      color: '#c9a84c', icon: '②'
-    },
-    {
-      score: narrative, max: 20,
-      title: 'Personal Narrative',
-      good: 'Activities connect to a clear, coherent story — this is rare and highly valued.',
-      bad: 'Without a connecting theme, the profile reads as scattered. A defined brand story is the single biggest upgrade a counsellor can provide.',
-      color: '#c9a84c', icon: '③'
-    },
-    {
-      score: commit, max: 10,
-      title: 'Sustained Commitment',
-      good: 'A long-term creative or athletic pursuit adds genuine character depth.',
-      bad: 'No sustained pursuit is visible. Universities value dedication over time — this dimension is built, not found.',
-      color: '#c9a84c', icon: '④'
-    },
-    {
-      score: gap, max: 30,
-      title: 'Competitive Gap',
-      good: 'Given the timeline and board, your child has meaningful runway to build a competitive application.',
-      bad: 'The gap between current profile and target university expectations is significant — and the timeline is tight. Every month matters.',
-      color: '#c9a84c', icon: '⑤'
-    }
+  const items = [
+    {score:scores.academic,max:20,title:'Academic Strength',icon:'①',good:'Academic profile is strong relative to target university benchmarks.',bad:'Scores are below what Ivy League and top universities typically expect. This is the hardest gap to close — it requires consistent effort over time.'},
+    {score:scores.ec,max:20,title:'Extracurricular Depth',icon:'②',good:'Strong external recognition and activity depth. This will stand out in the application.',bad:'Activities need more depth, external recognition, or research-level work. Ivy League readers rate a "1" only for national-level achievement.'},
+    {score:scores.narrative,max:20,title:'Personal Narrative',icon:'③',good:'Activities connect to a clear, coherent story — this is rare and highly valued.',bad:'Without a connecting theme, the profile reads as scattered. A defined brand story is the single biggest upgrade a counsellor can provide.'},
+    {score:scores.commit,max:10,title:'Sustained Commitment',icon:'④',good:'A long-term creative or athletic pursuit adds genuine character depth.',bad:'No sustained pursuit is visible. Universities value dedication over time — this dimension is built, not found.'},
+    {score:scores.gap,max:30,title:'Competitive Gap',icon:'⑤',good:'Given the timeline and board, your child has meaningful runway to build a competitive application.',bad:'The gap between current profile and target university expectations is significant — and the timeline is tight. Every month matters.'}
   ];
-
-  return insights.map(ins => {
-    const pct = (ins.score / ins.max) * 100;
+  return items.map(ins => {
+    const pct = (ins.score/ins.max)*100;
     const isGood = pct >= 60;
-    const iconBg = isGood ? '#e8f5ee' : '#fdeaea';
-    const iconColor = isGood ? '#2e7d52' : '#c0392b';
     return `<div class="dim-insight-card">
-      <div class="dim-insight-icon" style="background:${iconBg};color:${iconColor}">${ins.icon}</div>
-      <div class="dim-insight-body">
-        <div class="dim-insight-title">${ins.title} — ${ins.score}/${ins.max}</div>
-        <div class="dim-insight-text">${isGood ? ins.good : ins.bad}</div>
-      </div>
-    </div>`;
+      <div class="dim-insight-icon" style="background:${isGood?'#e8f5ee':'#fdeaea'};color:${isGood?'#2e7d52':'#c0392b'}">${ins.icon}</div>
+      <div><div class="dim-insight-title">${ins.title} — ${ins.score}/${ins.max}</div>
+      <div class="dim-insight-text">${isGood?ins.good:ins.bad}</div></div></div>`;
   }).join('');
 }
 
-// ── GENERATE REPORT ──
 function generateReport() {
   const scores = calcScore();
   const band = getBand(scores.total);
+  saveSubmission(scores);
+  showScreen('screen-report');
   const child = answers['child-name'] || 'Your child';
   const grade = answers.grade || '10';
   const board = answers.board || 'CBSE';
   const target = {'Ivy':'Ivy League','Top10':'Top 10 US','Top25':'Top 25 US','UK':'UK Russell Group','Undecided':'Top Global Universities'}[answers.target] || 'Top Universities';
-
-  showScreen('screen-report');
-
-  // Header
   document.getElementById('report-child-name').textContent = child + "'s Ivy Profile Score";
-  document.getElementById('report-subline').textContent = `Grade ${grade === '8-9' ? '8/9' : grade} · ${board} · Targeting ${target}`;
-
-  // Score number (animated count-up)
+  document.getElementById('report-subline').textContent = `Grade ${grade==='8-9'?'8/9':grade} · ${board} · Targeting ${target}`;
   let count = 0;
-  const target_score = scores.total;
-  const interval = setInterval(() => {
-    count = Math.min(count + 2, target_score);
-    document.getElementById('report-score-num').textContent = count;
-    if (count >= target_score) clearInterval(interval);
-  }, 25);
-
-  // Dial
-  const circumference = 2 * Math.PI * 68;
-  const offset = circumference - (scores.total / 100) * circumference;
-  const dial = document.getElementById('dialCircle');
-  setTimeout(() => {
-    dial.style.stroke = band.dialColor;
-    dial.style.strokeDashoffset = offset;
-  }, 100);
-
-  // Band
+  const iv = setInterval(() => { count = Math.min(count+2, scores.total); document.getElementById('report-score-num').textContent = count; if(count>=scores.total) clearInterval(iv); }, 25);
+  const circ = 2*Math.PI*68;
+  setTimeout(() => { const d = document.getElementById('dialCircle'); d.style.stroke = band.dialColor; d.style.strokeDashoffset = circ-(scores.total/100)*circ; }, 100);
   document.getElementById('report-band-label').textContent = band.label;
   const tag = document.getElementById('report-band-tag');
-  tag.textContent = band.tag;
-  tag.style.background = band.tagBg;
-  tag.style.color = band.tagColor;
-
-  // Bars (delayed for animation)
+  tag.textContent = band.tag; tag.style.background = band.tagBg; tag.style.color = band.tagColor;
   setTimeout(() => {
-    animateBar('bar-academic', 'score-academic', scores.academic, 20);
-    animateBar('bar-ec',       'score-ec',       scores.ec,       20);
-    animateBar('bar-narrative','score-narrative', scores.narrative,20);
-    animateBar('bar-commit',   'score-commit',    scores.commit,   10);
-    animateBar('bar-gap',      'score-gap',       scores.gap,      30);
+    animBar('bar-academic','score-academic',scores.academic,20);
+    animBar('bar-ec','score-ec',scores.ec,20);
+    animBar('bar-narrative','score-narrative',scores.narrative,20);
+    animBar('bar-commit','score-commit',scores.commit,10);
+    animBar('bar-gap','score-gap',scores.gap,30);
   }, 400);
-
-  // Gap analysis
   document.getElementById('gap-analysis-text').innerHTML = buildGapText(scores);
-
-  // Insights
   document.getElementById('insight-cards').innerHTML = buildInsights(scores);
 }
 
-function downloadReport() {
-  // Use browser print to PDF
-  const child = answers['child-name'] || 'Profile';
-  const originalTitle = document.title;
-  document.title = 'Yocket Elite · ' + child + ' · Ivy Profile Score';
-  window.print();
-  document.title = originalTitle;
-}
-
-function animateBar(barId, scoreId, score, max) {
+function animBar(barId, scoreId, score, max) {
   const bar = document.getElementById(barId);
   const lbl = document.getElementById(scoreId);
-  const pct = (score / max) * 100;
-  const color = pct >= 60 ? '#2e7d52' : pct >= 40 ? '#c9a84c' : '#c0392b';
-  bar.style.background = color;
-  bar.style.width = pct + '%';
-  lbl.textContent = score + '/' + max;
-  lbl.style.color = color;
+  const pct = (score/max)*100;
+  const color = pct>=60?'#2e7d52':pct>=40?'#c9a84c':'#c0392b';
+  bar.style.background = color; bar.style.width = pct+'%';
+  lbl.textContent = score+'/'+max; lbl.style.color = color;
+}
+
+function downloadReport() {
+  const child = answers['child-name'] || 'Profile';
+  const orig = document.title;
+  document.title = 'Yocket Elite · ' + child + ' · Ivy Profile Score';
+  window.print();
+  document.title = orig;
 }
 </script>
 </body>
