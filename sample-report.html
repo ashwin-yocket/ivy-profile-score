@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sample Report · Meera's Ivy Profile Score | Yocket Elite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--black:#0a0a0a;--white:#fafaf8;--cream:#f5f3ee;--gold:#c9a84c;--mid:#6a6a62;--border:rgba(10,10,10,0.1);--green:#2e7d52;--green-lt:#e8f5ee;--red:#c0392b;--red-lt:#fdeaea;--amber:#d4820a;--amber-lt:#fef3e2;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--white);color:var(--black)}
+
+/* SAMPLE BANNER */
+.sample-banner{background:var(--gold);padding:10px 24px;text-align:center;font-size:12px;font-weight:500;color:var(--black);letter-spacing:0.06em}
+
+/* REPORT HEADER */
+.report-header{background:var(--black);padding:48px 24px 40px;text-align:center}
+.report-header-inner{max-width:640px;margin:0 auto}
+.report-eyebrow{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+.report-name{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:600;font-style:italic;color:var(--white);line-height:1.1;margin-bottom:6px}
+.report-subline{font-size:14px;color:rgba(250,250,248,0.45);margin-bottom:32px}
+
+/* SCORE DIAL */
+.dial-wrap{display:flex;flex-direction:column;align-items:center;margin:0 auto 28px}
+.dial{position:relative;width:160px;height:160px}
+.dial svg{transform:rotate(-90deg)}
+.dial-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-big{font-family:var(--serif);font-size:52px;font-weight:600;color:var(--white);line-height:1;letter-spacing:-0.03em}
+.score-denom{font-size:14px;color:rgba(250,250,248,0.4);margin-top:2px}
+.score-band{margin-top:12px;font-size:13px;font-weight:500;color:var(--white)}
+.score-tag{display:inline-block;padding:4px 14px;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-top:6px;background:#fef3e2;color:#9a5f00}
+
+/* DIMS */
+.report-dims{max-width:640px;margin:0 auto;padding:36px 24px 0}
+.dims-label{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block}
+.dim-row{display:grid;grid-template-columns:1fr 3fr 60px;gap:12px;align-items:center;margin-bottom:20px}
+.dim-label{font-size:12px;font-weight:500;color:var(--mid);line-height:1.4}
+.dim-bar-wrap{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.dim-bar{height:100%;border-radius:3px}
+.dim-score{font-family:var(--serif);font-size:18px;font-weight:600;text-align:right}
+
+/* GAP */
+.report-gap{max-width:640px;margin:32px auto 0;padding:0 24px}
+.section-label{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px}
+.gap-box{border:1px solid var(--border);padding:24px;background:var(--cream);margin-bottom:12px}
+.gap-box p{font-size:15px;color:var(--black);line-height:1.8}
+.gap-box strong{font-weight:600}
+
+/* INSIGHTS */
+.insights{max-width:640px;margin:32px auto 0;padding:0 24px}
+.insight-card{border:1px solid var(--border);padding:18px 22px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.insight-icon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:700}
+.insight-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:3px}
+.insight-text{font-size:13px;color:var(--mid);line-height:1.65}
+
+/* CTA */
+.report-cta{background:var(--black);padding:56px 24px;margin-top:48px}
+.cta-inner{max-width:640px;margin:0 auto}
+.cta-eyebrow{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px}
+.cta-headline{font-family:var(--serif);font-size:clamp(32px,5vw,48px);font-weight:500;line-height:1.1;letter-spacing:-0.02em;color:var(--white);margin-bottom:14px}
+.cta-headline em{font-style:italic;color:var(--gold)}
+.cta-body{font-size:15px;color:rgba(250,250,248,0.55);line-height:1.75;max-width:480px;margin-bottom:0}
+.cta-body strong{color:rgba(250,250,248,0.85);font-weight:500}
+.cta-rule{border:none;border-top:1px solid rgba(255,255,255,0.08);margin:32px 0}
+.aditi-block{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px}
+.aditi-photo{width:64px;height:64px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(201,168,76,0.4);background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:22px;font-style:italic;color:rgba(201,168,76,0.5)}
+.aditi-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--white);margin-bottom:2px}
+.aditi-role{font-size:12px;color:var(--gold);margin-bottom:4px}
+.aditi-cred{font-size:12px;color:rgba(250,250,248,0.4);line-height:1.6}
+.aditi-note{font-size:14px;color:rgba(250,250,248,0.65);line-height:1.7;margin-bottom:22px;max-width:480px}
+.aditi-note strong{color:var(--white);font-weight:500}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--black);font-family:var(--sans);font-size:14px;font-weight:700;padding:16px 32px;border:none;cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;text-decoration:none}
+.btn-gold:hover{background:#dbb85a;transform:translateY(-2px)}
+
+/* TEAM */
+.team-rule{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:32px 0 24px}
+.team-label{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(250,250,248,0.3);display:block;margin-bottom:18px}
+.team-row{display:flex;gap:12px;flex-wrap:wrap}
+.team-card{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:10px 12px;flex:1;min-width:180px}
+.team-av{width:38px;height:38px;border-radius:50%;background:#1a1a1a;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--serif);font-size:14px;font-style:italic;color:rgba(201,168,76,0.4)}
+.team-name{font-size:12px;font-weight:500;color:var(--white);margin-bottom:1px}
+.team-title{font-size:10px;color:var(--gold)}
+.team-desc{font-size:10px;color:rgba(250,250,248,0.3);line-height:1.5;margin-top:1px}
+
+/* PLAN TEASER */
+.plan-rule{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:32px 0 20px}
+.plan-label{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(250,250,248,0.3);display:block;margin-bottom:14px}
+.plan-teaser{display:flex;gap:18px;align-items:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:18px 20px;cursor:pointer;transition:border-color 0.2s;text-decoration:none}
+.plan-teaser:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04)}
+.plan-thumb{width:56px;height:72px;background:#111;border:1px solid rgba(255,255,255,0.08);flex-shrink:0;padding:6px;position:relative}
+.ptl{height:2px;background:rgba(201,168,76,0.3);margin-bottom:3px;border-radius:1px}
+.plan-title{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--white);margin-bottom:3px;font-style:italic}
+.plan-sub{font-size:12px;color:rgba(250,250,248,0.35);line-height:1.5;margin-bottom:6px}
+.plan-link{font-size:11px;color:var(--gold);font-weight:500}
+
+@media(max-width:600px){
+  .dim-row{grid-template-columns:1fr;gap:4px}
+  .dim-score{text-align:left}
+  .team-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="sample-banner">SAMPLE REPORT — This is what a parent sees after completing the form</div>
+
+<div class="report-header">
+  <div class="report-header-inner">
+    <span class="report-eyebrow">Yocket Elite · Ivy Profile Score</span>
+    <div class="report-name">Meera's Ivy Profile Score</div>
+    <div class="report-subline">Grade 11 · IGCSE · Targeting Top 25 US</div>
+    <div class="dial-wrap">
+      <div class="dial">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="68" stroke="rgba(255,255,255,0.08)" stroke-width="10" fill="none"/>
+          <circle cx="80" cy="80" r="68" stroke="#d4820a" stroke-width="10" fill="none"
+            stroke-dasharray="427" stroke-dashoffset="155" stroke-linecap="round"/>
+        </svg>
+        <div class="dial-num">
+          <div class="score-big">54</div>
+          <div class="score-denom">/ 100</div>
+        </div>
+      </div>
+      <div class="score-band">Developing Profile</div>
+      <div class="score-tag">⚠ Plan needed now</div>
+    </div>
+  </div>
+</div>
+
+<div class="report-dims">
+  <span class="dims-label">Score Breakdown</span>
+  <div class="dim-row">
+    <div class="dim-label">Academic<br>Strength</div>
+    <div class="dim-bar-wrap"><div class="dim-bar" style="width:65%;background:#2e7d52"></div></div>
+    <div class="dim-score" style="color:#2e7d52">13/20</div>
+  </div>
+  <div class="dim-row">
+    <div class="dim-label">Extracurricular<br>Depth</div>
+    <div class="dim-bar-wrap"><div class="dim-bar" style="width:95%;background:#2e7d52"></div></div>
+    <div class="dim-score" style="color:#2e7d52">19/20</div>
+  </div>
+  <div class="dim-row">
+    <div class="dim-label">Personal<br>Narrative</div>
+    <div class="dim-bar-wrap"><div class="dim-bar" style="width:15%;background:#c0392b"></div></div>
+    <div class="dim-score" style="color:#c0392b">3/20</div>
+  </div>
+  <div class="dim-row">
+    <div class="dim-label">Sustained<br>Commitment</div>
+    <div class="dim-bar-wrap"><div class="dim-bar" style="width:70%;background:#2e7d52"></div></div>
+    <div class="dim-score" style="color:#2e7d52">7/10</div>
+  </div>
+  <div class="dim-row">
+    <div class="dim-label">Competitive<br>Gap</div>
+    <div class="dim-bar-wrap"><div class="dim-bar" style="width:40%;background:#c9a84c"></div></div>
+    <div class="dim-score" style="color:#c9a84c">12/30</div>
+  </div>
+</div>
+
+<div class="report-gap">
+  <span class="section-label">Gap Analysis</span>
+  <div class="gap-box">
+    <p><strong>Meera</strong> is in Grade 11 with less than 1 year before applying to Top 25 US. The profile is largely strong, but activities are not yet connected to a clear story or direction. A targeted plan can close this gap before applications open.</p>
+  </div>
+</div>
+
+<div class="insights">
+  <span class="section-label">What Each Score Means</span>
+
+  <div class="insight-card">
+    <div class="insight-icon" style="background:#e8f5ee;color:#2e7d52">①</div>
+    <div><div class="insight-title">Academic Strength — 13/20</div><div class="insight-text">Academic profile is strong relative to target university benchmarks.</div></div>
+  </div>
+  <div class="insight-card">
+    <div class="insight-icon" style="background:#e8f5ee;color:#2e7d52">②</div>
+    <div><div class="insight-title">Extracurricular Depth — 19/20</div><div class="insight-text">Strong external recognition and activity depth. This will stand out in the application.</div></div>
+  </div>
+  <div class="insight-card">
+    <div class="insight-icon" style="background:#fdeaea;color:#c0392b">③</div>
+    <div><div class="insight-title">Personal Narrative — 3/20</div><div class="insight-text">Without a connecting theme, the profile reads as scattered. A defined brand story is the single biggest upgrade a counsellor can provide.</div></div>
+  </div>
+  <div class="insight-card">
+    <div class="insight-icon" style="background:#e8f5ee;color:#2e7d52">④</div>
+    <div><div class="insight-title">Sustained Commitment — 7/10</div><div class="insight-text">A long-term creative or athletic pursuit adds genuine character depth.</div></div>
+  </div>
+  <div class="insight-card">
+    <div class="insight-icon" style="background:rgba(201,168,76,0.12);color:#8a6010">⑤</div>
+    <div><div class="insight-title">Competitive Gap — 12/30</div><div class="insight-text">The gap between current profile and target university expectations is significant — and the timeline is tight. Every month matters.</div></div>
+  </div>
+</div>
+
+<div class="report-cta">
+  <div class="cta-inner">
+    <span class="cta-eyebrow">What happens next</span>
+    <h2 class="cta-headline">This report is a diagnosis.<br><em>Not a prescription.</em></h2>
+    <p class="cta-body">A score tells you where your child is today.<br><strong>A plan tells you what to do next.</strong><br>That is a different conversation.</p>
+
+    <hr class="cta-rule"/>
+
+    <div class="aditi-block">
+      <div class="aditi-photo">A</div>
+      <div>
+        <div class="aditi-name">Aditi Lahiri</div>
+        <div class="aditi-role">Student Onboarding Lead · Yocket Elite</div>
+        <div class="aditi-cred">Student Success Specialist · 200+ families guided</div>
+      </div>
+    </div>
+    <p class="aditi-note">Aditi and the team will look at your child's score and tell you — in plain language — <strong>exactly what needs to happen next.</strong></p>
+    <a class="btn-gold" href="https://calendly.com/sandesh-vp-yocket/new-meeting" target="_blank">Book a FREE session with Aditi now →</a>
+
+    <hr class="team-rule"/>
+    <span class="team-label">The team behind every plan</span>
+    <div class="team-row">
+      <div class="team-card"><div class="team-av">A</div><div><div class="team-name">Aditi Lahiri</div><div class="team-title">Student Onboarding Lead</div><div class="team-desc">Student Success Specialist</div></div></div>
+      <div class="team-card"><div class="team-av">B</div><div><div class="team-name">Bushnin Waseem Patel</div><div class="team-title">Counselling Head</div><div class="team-desc">10+ yrs · Ivy League & Top 20</div></div></div>
+      <div class="team-card"><div class="team-av">S</div><div><div class="team-name">Simona Campbell</div><div class="team-title">Senior Strategist</div><div class="team-desc">Ex-Asst Dean, Georgetown</div></div></div>
+      <div class="team-card"><div class="team-av">D</div><div><div class="team-name">Danielle Kanclerz</div><div class="team-title">Senior Admissions Expert</div><div class="team-desc">Ex AO · Stanford, UC Berkeley</div></div></div>
+    </div>
+
+    <hr class="plan-rule"/>
+    <span class="plan-label">Curious about what a plan looks like?</span>
+    <a class="plan-teaser" href="https://ivy-profile-score.vercel.app" target="_blank">
+      <div class="plan-thumb">
+        <div class="ptl" style="width:80%"></div><div class="ptl" style="width:60%"></div>
+        <div class="ptl" style="width:90%"></div><div class="ptl" style="width:50%"></div>
+        <div class="ptl" style="width:70%;background:rgba(201,168,76,0.15)"></div>
+        <div style="position:absolute;bottom:4px;right:4px;font-size:7px;font-weight:700;letter-spacing:0.1em;color:var(--gold);background:rgba(0,0,0,0.8);padding:2px 4px">SAMPLE</div>
+      </div>
+      <div>
+        <div class="plan-title">Arjun's Ivy Plan · Grade 11</div>
+        <div class="plan-sub">Cornell · Johns Hopkins · CMU · All 4 steps shown</div>
+        <div class="plan-link">View sample plan →</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
