@@ -23,13 +23,15 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
 .landing-h1{font-family:var(--serif);font-size:clamp(40px,7vw,80px);font-weight:500;line-height:1.05;letter-spacing:-0.02em;color:var(--white);max-width:700px;animation:fadeIn 0.5s 0.1s ease both}
 .landing-h1 em{font-style:italic;color:var(--gold)}
 .landing-sub{margin-top:20px;font-size:16px;color:rgba(250,250,248,0.5);max-width:420px;line-height:1.75;animation:fadeIn 0.5s 0.2s ease both}
-.landing-price{margin-top:36px;display:flex;align-items:center;gap:12px;animation:fadeIn 0.5s 0.3s ease both}
-.price-tag{font-family:var(--serif);font-size:48px;font-weight:600;color:var(--gold);letter-spacing:-0.02em}
-.price-original{font-size:18px;color:rgba(250,250,248,0.3);text-decoration:line-through}
-.price-off{font-size:12px;font-weight:500;background:var(--gold);color:var(--black);padding:3px 8px}
+
 .landing-btn{margin-top:32px;background:var(--gold);color:var(--black);font-family:var(--sans);font-size:15px;font-weight:600;padding:18px 48px;border:none;cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;animation:fadeIn 0.5s 0.4s ease both}
 .landing-btn:hover{background:#dbb85a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.3)}
 .landing-trust{margin-top:32px;font-size:12px;color:rgba(250,250,248,0.3);animation:fadeIn 0.5s 0.5s ease both}
+.landing-steps{margin-top:40px;display:flex;align-items:center;gap:0;animation:fadeIn 0.5s 0.3s ease both}
+.landing-step{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 20px}
+.landing-step-num{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--gold);line-height:1}
+.landing-step-label{font-size:11px;color:rgba(250,250,248,0.4);letter-spacing:0.04em;text-align:center}
+.landing-step-divider{width:1px;height:32px;background:rgba(255,255,255,0.1);flex-shrink:0}
 #screen-q{background:var(--white)}
 #screen-q.active{display:block}
 .q-nav{position:sticky;top:0;z-index:50;background:rgba(250,250,248,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
@@ -92,17 +94,107 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
 .dim-insight-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700}
 .dim-insight-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px}
 .dim-insight-text{font-size:13px;color:var(--mid);line-height:1.65}
-.report-cta{background:var(--black);text-align:center;padding:56px 24px;margin-top:48px}
-.report-cta-eyebrow{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px}
-.report-cta-title{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:500;color:var(--white);line-height:1.1;max-width:560px;margin:0 auto 12px}
-.report-cta-title em{font-style:italic;color:var(--gold)}
-.report-cta-sub{font-size:14px;color:rgba(250,250,248,0.45);margin-bottom:20px;line-height:1.7;max-width:480px;margin-left:auto;margin-right:auto}
-.report-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
-.report-cta-btn-primary{background:var(--gold);color:var(--black);font-family:var(--sans);font-size:15px;font-weight:700;padding:18px 36px;border:none;cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;display:inline-block;text-decoration:none}
-.report-cta-btn-primary:hover{background:#dbb85a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.3)}
-.report-cta-btn-secondary{background:transparent;color:var(--white);font-family:var(--sans);font-size:15px;font-weight:500;padding:18px 32px;border:1px solid rgba(255,255,255,0.2);cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;text-decoration:none}
-.report-cta-btn-secondary:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.05)}
-.report-social-proof{margin-top:24px;font-size:12px;color:rgba(250,250,248,0.3)}
+/* ── NEW CTA SECTION ── */
+.report-cta{background:var(--black);padding:72px 24px 64px;margin-top:48px}
+.cta-inner{max-width:720px;margin:0 auto}
+.cta-eyebrow{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:20px}
+.cta-headline{font-family:var(--serif);font-size:clamp(34px,5vw,52px);font-weight:500;line-height:1.1;letter-spacing:-0.02em;color:var(--white);margin-bottom:16px}
+.cta-headline em{font-style:italic;color:var(--gold)}
+.cta-body{font-size:16px;color:rgba(250,250,248,0.55);line-height:1.75;max-width:520px}
+.cta-body strong{color:rgba(250,250,248,0.85);font-weight:500}
+.cta-rule{border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0}
+.aditi-block{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px}
+.aditi-photo{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(201,168,76,0.4);background:#1a1a1a;display:flex;align-items:center;justify-content:center}
+.aditi-photo img{width:100%;height:100%;object-fit:cover}
+.aditi-initials{font-family:var(--serif);font-size:24px;font-style:italic;color:rgba(201,168,76,0.5)}
+.aditi-name{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--white);margin-bottom:3px}
+.aditi-role{font-size:13px;color:var(--gold);font-weight:500;margin-bottom:6px}
+.aditi-cred{font-size:13px;color:rgba(250,250,248,0.45);line-height:1.6}
+.aditi-cta-line{font-size:15px;color:rgba(250,250,248,0.7);line-height:1.65;margin-bottom:20px;max-width:520px}
+.aditi-cta-line strong{color:var(--white);font-weight:500}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--black);font-family:var(--sans);font-size:15px;font-weight:700;padding:17px 36px;border:none;cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;text-decoration:none}
+.btn-primary:hover{background:#dbb85a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.25)}
+.btn-primary .arrow{transition:transform 0.2s}
+.btn-primary:hover .arrow{transform:translateX(4px)}
+.btn-secondary-pdf{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(250,250,248,0.5);font-family:var(--sans);font-size:14px;font-weight:500;padding:17px 24px;border:1px solid rgba(255,255,255,0.15);cursor:pointer;letter-spacing:0.02em;transition:all 0.2s;margin-left:12px}
+.btn-secondary-pdf:hover{color:var(--white);border-color:rgba(255,255,255,0.4)}
+.team-rule{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:40px 0 28px}
+.team-label-sm{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(250,250,248,0.3);display:block;margin-bottom:20px}
+.team-row{display:flex;gap:16px;flex-wrap:wrap}
+.team-member{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:12px 14px;flex:1;min-width:200px;transition:border-color 0.2s}
+.team-member:hover{border-color:rgba(201,168,76,0.25)}
+.team-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#1a1a1a;display:flex;align-items:center;justify-content:center}
+.team-avatar img{width:100%;height:100%;object-fit:cover}
+.team-av-init{font-family:var(--serif);font-size:16px;font-style:italic;color:rgba(201,168,76,0.4)}
+.team-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:2px}
+.team-title-sm{font-size:11px;color:var(--gold);margin-bottom:2px}
+.team-desc-sm{font-size:11px;color:rgba(250,250,248,0.35);line-height:1.5}
+.plan-rule{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:36px 0 24px}
+.plan-label-sm{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(250,250,248,0.3);display:block;margin-bottom:16px}
+.plan-teaser{display:flex;gap:20px;align-items:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:20px 24px;cursor:pointer;transition:border-color 0.2s,background 0.2s;text-decoration:none}
+.plan-teaser:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04)}
+.plan-thumb{width:64px;height:80px;background:#111;border:1px solid rgba(255,255,255,0.08);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+.plan-thumb-inner{width:100%;padding:6px}
+.plan-thumb-line{height:2px;background:rgba(201,168,76,0.3);margin-bottom:3px;border-radius:1px}
+.plan-thumb-line:nth-child(1){width:80%}.plan-thumb-line:nth-child(2){width:60%}.plan-thumb-line:nth-child(3){width:90%}.plan-thumb-line:nth-child(4){width:50%}.plan-thumb-line:nth-child(5){width:70%;background:rgba(201,168,76,0.15)}.plan-thumb-line:nth-child(6){width:55%;background:rgba(201,168,76,0.15)}
+.plan-thumb-badge{position:absolute;bottom:4px;right:4px;font-size:7px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);background:rgba(0,0,0,0.8);padding:2px 4px}
+.plan-info-title{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--white);margin-bottom:4px;font-style:italic}
+.plan-info-sub{font-size:13px;color:rgba(250,250,248,0.4);line-height:1.5;margin-bottom:8px}
+.plan-info-link{font-size:12px;color:var(--gold);font-weight:500;display:flex;align-items:center;gap:4px}
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(10,10,10,0.8);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--white);width:100%;max-width:680px;max-height:90vh;overflow-y:auto;animation:modalIn 0.3s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.modal-close-bar{position:sticky;top:0;z-index:10;background:var(--white);padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.modal-close-label{font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid)}
+.modal-close-btn{background:var(--black);color:var(--white);border:none;font-family:var(--sans);font-size:13px;font-weight:500;padding:8px 16px;cursor:pointer}
+.mp-cover{background:var(--black);color:var(--white);padding:40px 36px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.08)}
+.mp-cover-badge{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px}
+.mp-cover-name{font-family:var(--serif);font-size:36px;font-weight:600;font-style:italic;color:var(--white);margin-bottom:6px}
+.mp-cover-sub{font-size:13px;color:rgba(250,250,248,0.45);margin-bottom:20px}
+.mp-outcome{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);padding:8px 16px;font-size:12px;color:rgba(250,250,248,0.7)}
+.mp-outcome-tag{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+.mp-step-header{display:flex;align-items:center;gap:14px;padding:20px 36px 16px;background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:sticky;top:53px;z-index:5}
+.mp-step-circle{width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--black);font-family:var(--serif);font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mp-step-label{font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.mp-step-title{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--black)}
+.mp-body{padding:24px 36px 32px}
+.mp-sub-label{font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:14px}
+.mp-stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border)}
+.mp-stat{padding:16px 12px;border-right:1px solid var(--border);text-align:center}
+.mp-stat:last-child{border-right:none}
+.mp-stat-val{font-family:var(--serif);font-size:28px;font-weight:600;line-height:1;letter-spacing:-0.02em}
+.mp-stat-val em{font-style:italic;color:var(--gold)}
+.mp-stat-label{font-size:10px;color:var(--mid);margin-top:4px;line-height:1.4}
+.mp-gap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.mp-gap-card{padding:14px 16px;border:1px solid var(--border)}
+.mp-gap-title{font-size:12px;font-weight:600;margin-bottom:6px}
+.mp-gap-items{font-size:11px;color:var(--mid);line-height:1.7}
+.mp-gap-green{border-left:3px solid #4caf7d}.mp-gap-green .mp-gap-title{color:#2e7d52}
+.mp-gap-amber{border-left:3px solid var(--gold)}.mp-gap-amber .mp-gap-title{color:#9a6f1a}
+.mp-gap-red{border-left:3px solid #e07070}.mp-gap-red .mp-gap-title{color:#b34040}
+.mp-brand{background:var(--black);padding:24px 28px}
+.mp-brand-label{font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(201,168,76,0.8);margin-bottom:8px;display:block}
+.mp-brand-story{font-family:var(--serif);font-size:18px;font-style:italic;line-height:1.65;color:var(--white)}
+.mp-pillars{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border)}
+.mp-pillar{padding:18px 16px;border-right:1px solid var(--border)}
+.mp-pillar:last-child{border-right:none}
+.mp-pillar-title{font-family:var(--serif);font-size:14px;font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.mp-pillar-item{font-size:11px;color:var(--mid);line-height:1.6;padding:4px 0;border-bottom:1px solid rgba(10,10,10,0.04)}
+.mp-pillar-item:last-child{border-bottom:none}
+.mp-roadmap{border:1px solid var(--border)}
+.mp-road-phase{border-bottom:1px solid var(--border)}
+.mp-road-phase:last-child{border-bottom:none}
+.mp-road-header{background:var(--black);padding:10px 16px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.mp-road-phase-num{font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+.mp-road-phase-title{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--white)}
+.mp-road-tasks{padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.mp-road-task{font-size:12px;color:var(--mid);line-height:1.6;display:flex;gap:8px}
+.mp-road-check{color:var(--gold);font-weight:600;flex-shrink:0}
+.mp-final{background:var(--black);padding:24px 28px}
+.mp-final-label{font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(201,168,76,0.8);display:block;margin-bottom:8px}
+.mp-final-unis{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--gold);line-height:1.8}
 .report-spacer{height:32px}
 @media print{
   #screen-landing,#screen-q{display:none!important}
@@ -125,14 +217,17 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
 <div class="screen active" id="screen-landing">
   <div class="landing-glow"></div>
   <div class="landing-badge">Yocket Elite · Profile Intelligence</div>
-  <h1 class="landing-h1">Know exactly where<br>your child's profile <em>stands.</em></h1>
-  <p class="landing-sub">A personalised score across 5 dimensions — the same framework Ivy League admissions officers use to evaluate every application.</p>
-  <div class="landing-price">
-    <div class="price-tag">₹99</div>
-    <div><div class="price-original">₹399</div><div class="price-off">75% OFF</div></div>
+  <h1 class="landing-h1">Welcome.<br>Let's build your child's <em>score.</em></h1>
+  <p class="landing-sub">You're one step away from knowing exactly where your child stands — and what needs to happen next.</p>
+  <div class="landing-steps">
+    <div class="landing-step"><span class="landing-step-num">3 min</span><span class="landing-step-label">to fill the form</span></div>
+    <div class="landing-step-divider"></div>
+    <div class="landing-step"><span class="landing-step-num">5 dimensions</span><span class="landing-step-label">scored instantly</span></div>
+    <div class="landing-step-divider"></div>
+    <div class="landing-step"><span class="landing-step-num">1 report</span><span class="landing-step-label">personalised to your child</span></div>
   </div>
-  <button class="landing-btn" onclick="startQ()">Get my child's score →</button>
-  <p class="landing-trust">Instant result · No counsellor call required · Takes 3 minutes</p>
+  <button class="landing-btn" onclick="startQ()">Start now →</button>
+  <p class="landing-trust">No counsellor call required · Results are instant</p>
 </div>
 
 <!-- SCREEN 2: QUESTIONNAIRE -->
@@ -146,38 +241,21 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
   </nav>
   <div class="q-body">
 
-    <!-- 1: Parent name -->
+    <!-- 1+2+3 combined: All contact details on one screen -->
     <div class="q-step active" id="step-1">
-      <span class="q-label">About you</span>
-      <h2 class="q-question">What is your name?</h2>
-      <input class="q-input" id="ans-parent-name" type="text" placeholder="Your name" oninput="checkText('ans-parent-name','btn-1')"/>
+      <span class="q-label">Let's get started</span>
+      <h2 class="q-question">Tell us about<br><em>you and your child.</em></h2>
+      <input class="q-input" id="ans-parent-name" type="text" placeholder="Your name (parent)" oninput="checkCombined()"/>
+      <input class="q-input" id="ans-child-name" type="text" placeholder="Your child's first name" oninput="checkCombined()"/>
+      <input class="q-input" id="ans-email" type="email" placeholder="Your email address" oninput="checkCombined()"/>
       <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-1" onclick="nextStep(2)" disabled>Continue →</button>
+        <button class="q-btn-next" id="btn-1" onclick="nextStep(4)" disabled>Continue →</button>
       </div>
     </div>
 
-    <!-- 2: Child name -->
-    <div class="q-step" id="step-2">
-      <span class="q-label">About your child</span>
-      <h2 class="q-question">What is your child's name?</h2>
-      <input class="q-input" id="ans-child-name" type="text" placeholder="Your child's first name" oninput="checkText('ans-child-name','btn-2')"/>
-      <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-2" onclick="nextStep(3)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(1)">← Back</button>
-      </div>
-    </div>
-
-    <!-- 3: Email -->
-    <div class="q-step" id="step-3">
-      <span class="q-label">Contact details</span>
-      <h2 class="q-question">What is your <em>email address?</em></h2>
-      <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.6">We'll send a copy of the report here.</p>
-      <input class="q-input" id="ans-email" type="email" placeholder="your@email.com" oninput="checkText('ans-email','btn-3')"/>
-      <div class="q-nav-btns">
-        <button class="q-btn-next" id="btn-3" onclick="nextStep(4)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(2)">← Back</button>
-      </div>
-    </div>
+    <!-- placeholder step-2 and step-3 (skipped, merged into step-1) -->
+    <div class="q-step" id="step-2" style="display:none"></div>
+    <div class="q-step" id="step-3" style="display:none"></div>
 
     <!-- 4: Phone -->
     <div class="q-step" id="step-4">
@@ -186,7 +264,7 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
       <input class="q-input" id="ans-phone" type="tel" placeholder="+91 98765 43210" oninput="checkText('ans-phone','btn-4')"/>
       <div class="q-nav-btns">
         <button class="q-btn-next" id="btn-4" onclick="nextStep(5)" disabled>Continue →</button>
-        <button class="q-btn-back" onclick="prevStep(3)">← Back</button>
+        <button class="q-btn-back" onclick="prevStep(1)">← Back</button>
       </div>
     </div>
 
@@ -424,26 +502,172 @@ body{font-family:var(--sans);background:var(--white);color:var(--black);min-heig
   </div>
 
   <div class="report-cta">
-    <div class="report-cta-eyebrow">What happens next</div>
-    <div class="report-cta-title">Every gap you just saw<br>has <em>a fix.</em></div>
-    <p class="report-cta-sub">This score is a diagnosis. The plan is what closes the gap — built in a 30-minute conversation with a Yocket Elite counsellor.</p>
-    <p class="report-cta-sub">Free. No commitment.</p>
-    <div class="report-cta-btns">
-      <a class="report-cta-btn report-cta-btn-primary" href="https://calendly.com/sandesh-vp-yocket/new-meeting" target="_blank">Book a call with a Yocket counsellor →</a>
-      <button class="report-cta-btn report-cta-btn-secondary" onclick="downloadReport()">Save as PDF ↓</button>
+    <div class="cta-inner">
+
+      <span class="cta-eyebrow">What happens next</span>
+      <h2 class="cta-headline">This report is a diagnosis.<br><em>Not a prescription.</em></h2>
+      <p class="cta-body">
+        A score tells you where your child is today.<br>
+        <strong>A plan tells you what to do next.</strong><br>
+        That is a different conversation — and it is one Aditi and the team have had 1000+ times.
+      </p>
+
+      <hr class="cta-rule"/>
+
+      <div class="aditi-block">
+        <div class="aditi-photo">
+          <span class="aditi-initials">A</span>
+        </div>
+        <div>
+          <div class="aditi-name">Aditi Lahiri</div>
+          <div class="aditi-role">Student Onboarding Lead · Yocket Elite</div>
+          <div class="aditi-cred">Student Success Specialist · Has guided 200+ families through this exact conversation</div>
+        </div>
+      </div>
+
+      <p class="aditi-cta-line">
+        Aditi and the team will look at your child's score, understand the gaps,
+        and tell you — in plain language — <strong>exactly what needs to happen next.</strong>
+      </p>
+
+      <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap">
+        <a class="btn-primary" href="https://calendly.com/sandesh-vp-yocket/new-meeting" target="_blank">
+          Book a FREE session with Aditi now <span class="arrow">→</span>
+        </a>
+        <button class="btn-secondary-pdf" onclick="downloadReport()">Save as PDF ↓</button>
+      </div>
+
+      <hr class="team-rule"/>
+      <span class="team-label-sm">The team behind every plan</span>
+      <div class="team-row">
+        <div class="team-member">
+          <div class="team-avatar"><span class="team-av-init">A</span></div>
+          <div>
+            <div class="team-name">Aditi Lahiri</div>
+            <div class="team-title-sm">Student Onboarding Lead</div>
+            <div class="team-desc-sm">Student Success Specialist · Yocket Elite</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar"><span class="team-av-init">B</span></div>
+          <div>
+            <div class="team-name">Bushnin Waseem Patel</div>
+            <div class="team-title-sm">Counselling Head</div>
+            <div class="team-desc-sm">End-to-End Application Strategist · 10+ yrs · Ivy League & Top 20</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar"><span class="team-av-init">S</span></div>
+          <div>
+            <div class="team-name">Simona Campbell</div>
+            <div class="team-title-sm">Senior Strategist</div>
+            <div class="team-desc-sm">Ex-Asst Dean, Georgetown · Stanford, UC Berkeley</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar"><span class="team-av-init">D</span></div>
+          <div>
+            <div class="team-name">Danielle Kanclerz</div>
+            <div class="team-title-sm">Senior Global Admissions Expert</div>
+            <div class="team-desc-sm">Ex Admissions Officer · Stanford and UC Berkeley</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="plan-rule"/>
+      <span class="plan-label-sm">Curious about what a plan actually looks like?</span>
+      <div class="plan-teaser" onclick="document.getElementById('planModal').classList.add('open')">
+        <div class="plan-thumb">
+          <div class="plan-thumb-inner">
+            <div class="plan-thumb-line"></div>
+            <div class="plan-thumb-line"></div>
+            <div class="plan-thumb-line"></div>
+            <div class="plan-thumb-line"></div>
+            <div class="plan-thumb-line"></div>
+            <div class="plan-thumb-line"></div>
+          </div>
+          <span class="plan-thumb-badge">SAMPLE</span>
+        </div>
+        <div>
+          <div class="plan-info-title">Arjun's Ivy Plan · Grade 11 · AI for Healthcare</div>
+          <div class="plan-info-sub">A real plan built for a CBSE student targeting Cornell, Johns Hopkins and CMU. All 4 steps: Assessment → Brand Story → Roadmap → Tracking.</div>
+          <div class="plan-info-link">View sample plan →</div>
+        </div>
+      </div>
+
     </div>
-    <p class="report-social-proof">1000+ families · Cornell · Stanford · Johns Hopkins · Dartmouth · MIT</p>
+  </div>
+</div>
+
+<!-- PLAN MODAL -->
+<div class="modal-overlay" id="planModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <div class="modal-close-bar">
+      <span class="modal-close-label">Sample Plan · Arjun Mehta</span>
+      <button class="modal-close-btn" onclick="document.getElementById('planModal').classList.remove('open')">✕ Close</button>
+    </div>
+    <div class="mp-cover">
+      <span class="mp-cover-badge">Yocket Elite · Sample Plan</span>
+      <div class="mp-cover-name">Arjun Mehta</div>
+      <div class="mp-cover-sub">AI for Healthcare · Grade 11 · CBSE · Mumbai</div>
+      <div class="mp-outcome"><span class="mp-outcome-tag">Outcome</span> Cornell · Johns Hopkins · Carnegie Mellon</div>
+    </div>
+    <div class="mp-step-header"><div class="mp-step-circle">1</div><div><div class="mp-step-label">Step 1 · We asked</div><div class="mp-step-title">Where is Arjun right now?</div></div></div>
+    <div class="mp-body">
+      <span class="mp-sub-label">Academic Fingerprint</span>
+      <div class="mp-stats">
+        <div class="mp-stat"><div class="mp-stat-val">94<em>%</em></div><div class="mp-stat-label">Grade 10 CBSE</div></div>
+        <div class="mp-stat"><div class="mp-stat-val">97<em>%</em></div><div class="mp-stat-label">Grade 11 Predicted</div></div>
+        <div class="mp-stat"><div class="mp-stat-val">1490</div><div class="mp-stat-label">SAT Score</div></div>
+        <div class="mp-stat"><div class="mp-stat-val">T<em>25</em></div><div class="mp-stat-label">Target Tier</div></div>
+      </div>
+      <span class="mp-sub-label" style="margin-top:20px">Where We Found the Gaps</span>
+      <div class="mp-gap-grid">
+        <div class="mp-gap-card mp-gap-green"><div class="mp-gap-title">✓ Strong</div><div class="mp-gap-items">Academics · Python & ML basics · School robotics team · Classical piano (8 years)</div></div>
+        <div class="mp-gap-card mp-gap-amber"><div class="mp-gap-title">→ Needs depth</div><div class="mp-gap-items">No research paper yet · No internship · Activities not connected to one story</div></div>
+        <div class="mp-gap-card mp-gap-red"><div class="mp-gap-title">✗ Missing</div><div class="mp-gap-items">External competition recognition · Clinical exposure · Leadership role with impact</div></div>
+      </div>
+    </div>
+    <div class="mp-step-header"><div class="mp-step-circle">2</div><div><div class="mp-step-label">Step 2 · We discovered</div><div class="mp-step-title">What makes Arjun different?</div></div></div>
+    <div class="mp-body">
+      <div class="mp-brand"><span class="mp-brand-label">His Brand Story</span><p class="mp-brand-story">"The engineer who listens before he builds — using AI to close the gap between what doctors know and what patients receive in underserved India."</p></div>
+      <span class="mp-sub-label" style="margin-top:20px">Three-Pillar Profile</span>
+      <div class="mp-pillars">
+        <div class="mp-pillar"><div class="mp-pillar-title">AI for Clinical Impact</div><div class="mp-pillar-item">Diagnostic triage tool using Python</div><div class="mp-pillar-item">Research paper on ML for anaemia</div><div class="mp-pillar-item">2-month shadowing at paediatric clinic</div></div>
+        <div class="mp-pillar"><div class="mp-pillar-title">Builder & Leader</div><div class="mp-pillar-item">Founded MedCode Club — 35 students</div><div class="mp-pillar-item">Top 20, National Health Hackathon</div><div class="mp-pillar-item">Mentored 3 juniors to inter-school wins</div></div>
+        <div class="mp-pillar"><div class="mp-pillar-title">Human Dimension</div><div class="mp-pillar-item">Classical piano — 8 years, 4 concerts</div><div class="mp-pillar-item">Teaches piano to 12 underprivileged kids</div><div class="mp-pillar-item">Monthly blog on tech ethics — 400+ readers</div></div>
+      </div>
+    </div>
+    <div class="mp-step-header"><div class="mp-step-circle">3</div><div><div class="mp-step-label">Step 3 · We built</div><div class="mp-step-title">What should Arjun do, and when?</div></div></div>
+    <div class="mp-body">
+      <span class="mp-sub-label">The Roadmap</span>
+      <div class="mp-roadmap">
+        <div class="mp-road-phase"><div class="mp-road-header"><span class="mp-road-phase-num">Grade 11 · Now</span><span class="mp-road-phase-title">Build the proof points</span></div><div class="mp-road-tasks"><div class="mp-road-task"><span class="mp-road-check">→</span>Complete and publish research paper on anaemia detection ML model</div><div class="mp-road-task"><span class="mp-road-check">→</span>Secure 3-month internship at a health-tech startup or hospital lab</div><div class="mp-road-task"><span class="mp-road-check">→</span>Enter 2 national competitions — Health Hackathon + IRIS Science Fair</div><div class="mp-road-task"><span class="mp-road-check">→</span>SAT — target 1530+ by December</div></div></div>
+        <div class="mp-road-phase"><div class="mp-road-header"><span class="mp-road-phase-num">Grade 12 · Term 1</span><span class="mp-road-phase-title">Deepen and lead</span></div><div class="mp-road-tasks"><div class="mp-road-task"><span class="mp-road-check">→</span>Launch V2 of diagnostic tool — expand to 2 more clinics</div><div class="mp-road-task"><span class="mp-road-check">→</span>MedCode Club — organise inter-school health + tech event (10+ schools)</div><div class="mp-road-task"><span class="mp-road-check">→</span>Apply for Google Science Fair or Regeneron ISEF</div></div></div>
+        <div class="mp-road-phase"><div class="mp-road-header"><span class="mp-road-phase-num">Grade 12 · Applications</span><span class="mp-road-phase-title">Tell the story clearly</span></div><div class="mp-road-tasks"><div class="mp-road-task"><span class="mp-road-check">→</span>Common App essay: piano as the empathy lens — why he builds for people, not just problems</div><div class="mp-road-task"><span class="mp-road-check">→</span>Supplement essays: clinic experience + what preventive AI means for India</div><div class="mp-road-task"><span class="mp-road-check">→</span>Recommenders briefed: CS teacher, Biology teacher, clinic mentor</div></div></div>
+      </div>
+    </div>
+    <div class="mp-step-header"><div class="mp-step-circle">4</div><div><div class="mp-step-label">Step 4 · We checked</div><div class="mp-step-title">Is Arjun on track?</div></div></div>
+    <div class="mp-body" style="padding-bottom:0">
+      <div class="mp-final"><span class="mp-final-label">Final Outcome · Arjun received offers from:</span><div class="mp-final-unis">Cornell University (Engineering) · Johns Hopkins (BME) · Carnegie Mellon (CS) · University of Michigan · Georgia Tech</div></div>
+    </div>
+    <div style="padding:28px 36px;text-align:center;background:var(--cream);border-top:1px solid var(--border)">
+      <p style="font-size:14px;color:var(--mid);margin-bottom:16px;line-height:1.7">Your child's plan would be built exactly like this — in one session with Aditi.</p>
+      <a class="btn-primary" href="https://calendly.com/sandesh-vp-yocket/new-meeting" target="_blank" style="display:inline-flex">Book a FREE session now <span class="arrow">→</span></a>
+    </div>
   </div>
 </div>
 
 <script>
+window.addEventListener("load", prefillFromURL);
+
 const SUPABASE_URL = 'https://mtwjsfttmzoecxdnqpcy.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_vxKT31zRCbVMybh1Kpa1iw_GqOFSBT4';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const answers = {};
 let currentStep = 1;
-const TOTAL_STEPS = 15;
+const TOTAL_STEPS = 13;
 
 async function saveSubmission(scores) {
   try {
@@ -468,7 +692,7 @@ async function saveSubmission(scores) {
   } catch(e) { console.error('Save failed:', e); }
 }
 
-function startQ() { showScreen('screen-q'); }
+function startQ() { showScreen('screen-q'); document.getElementById('screen-q').scrollIntoView({behavior:'smooth'}); }
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -508,9 +732,12 @@ function nextStep(n) { showStep(n); }
 function prevStep(n) { showStep(n); }
 
 function updateProgress() {
-  const pct = ((currentStep - 1) / (TOTAL_STEPS - 1)) * 100;
+  // Map actual step numbers to display numbers (steps 2,3 are hidden/merged)
+  const stepMap = {1:1,4:2,5:3,6:4,7:5,8:6,9:7,10:8,11:9,12:10,13:11,14:12,15:13};
+  const display = stepMap[currentStep] || currentStep;
+  const pct = ((display - 1) / (TOTAL_STEPS - 1)) * 100;
   document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressLabel').textContent = `Step ${currentStep} of ${TOTAL_STEPS}`;
+  document.getElementById('progressLabel').textContent = `Step ${display} of ${TOTAL_STEPS}`;
 }
 
 function selectOption(key, val, el) {
@@ -519,6 +746,28 @@ function selectOption(key, val, el) {
   el.classList.add('selected');
   const btn = document.getElementById('btn-' + currentStep);
   if (btn) btn.disabled = false;
+}
+
+function checkCombined() {
+  const pn = document.getElementById('ans-parent-name').value.trim();
+  const cn = document.getElementById('ans-child-name').value.trim();
+  const em = document.getElementById('ans-email').value.trim();
+  answers['parent-name'] = pn;
+  answers['child-name'] = cn;
+  answers['email'] = em;
+  document.getElementById('btn-1').disabled = !(pn.length >= 2 && cn.length >= 2 && em.includes('@'));
+}
+
+// Pre-fill from URL params (for when payload sent from landing page)
+function prefillFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const name  = params.get('name')  || params.get('parent_name') || '';
+  const email = params.get('email') || '';
+  const child = params.get('child') || params.get('child_name')  || '';
+  if (name)  { document.getElementById('ans-parent-name').value = name;  answers['parent-name'] = name; }
+  if (email) { document.getElementById('ans-email').value = email;        answers['email'] = email; }
+  if (child) { document.getElementById('ans-child-name').value = child;   answers['child-name'] = child; }
+  if (name || email || child) checkCombined();
 }
 
 function checkText(inputId, btnId) {
