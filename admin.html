@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -365,7 +366,7 @@ function renderTable() {
 
   const total = filtered.length;
   const totalPages = Math.ceil(total/PAGE_SIZE);
-  document.getElementById('pageInfo').textContent = `Showing ${start+1}–${Math.min(start+PAGE_SIZE,total)} of ${total}`;
+  document.getElementById('pageInfo').textContent = `Showing ${start+1}-${Math.min(start+PAGE_SIZE,total)} of ${total}`;
   document.getElementById('btnPrev').disabled = page <= 1;
   document.getElementById('btnNext').disabled = page >= totalPages;
 }
@@ -510,12 +511,12 @@ hr{border:none;border-top:1px solid #e0e0e0;margin:28px 0}
     <a class="cta-btn" href="https://calendly.com/sandesh-vp-yocket/new-meeting" target="_blank">Book a FREE session with Aditi now →</a>
   </div>
 </div>
-<script>window.onload=function(){window.print();}</script>
 </body></html>`;
 
   const w = window.open('', '_blank');
   w.document.write(html);
   w.document.close();
+  setTimeout(function(){ w.print(); }, 800);
 }
 
 </script>
