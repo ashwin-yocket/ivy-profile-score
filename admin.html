@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin · Ivy Profile Score</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--black:#0a0a0a;--white:#fafaf8;--cream:#f5f3ee;--gold:#c9a84c;--mid:#6a6a62;--border:rgba(10,10,10,0.1);--green:#2e7d52;--red:#c0392b;--sans:'DM Sans',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--cream);color:var(--black);min-height:100vh}
+
+/* LOGIN */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login-box{background:var(--white);border:1px solid var(--border);padding:48px 40px;width:100%;max-width:380px;text-align:center}
+.login-logo{font-size:20px;font-weight:600;margin-bottom:8px;letter-spacing:0.02em}
+.login-logo span{color:var(--gold);font-style:italic}
+.login-sub{font-size:13px;color:var(--mid);margin-bottom:32px}
+.login-input{width:100%;border:1px solid var(--border);padding:14px 16px;font-family:var(--sans);font-size:14px;outline:none;margin-bottom:12px;transition:border-color 0.2s}
+.login-input:focus{border-color:var(--gold)}
+.login-btn{width:100%;background:var(--black);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:500;padding:14px;border:none;cursor:pointer;transition:background 0.2s}
+.login-btn:hover{background:#222}
+.login-error{font-size:12px;color:var(--red);margin-top:10px;display:none}
+
+/* DASHBOARD */
+.dashboard{display:none}
+.top-bar{background:var(--black);padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+.top-bar-logo{font-size:16px;font-weight:600;color:var(--white);letter-spacing:0.02em}
+.top-bar-logo span{color:var(--gold);font-style:italic}
+.top-bar-right{display:flex;gap:12px;align-items:center}
+.btn-csv{background:var(--gold);color:var(--black);font-family:var(--sans);font-size:13px;font-weight:600;padding:9px 20px;border:none;cursor:pointer;transition:all 0.2s;letter-spacing:0.02em}
+.btn-csv:hover{background:#dbb85a}
+.btn-logout{background:transparent;color:rgba(255,255,255,0.5);font-family:var(--sans);font-size:13px;padding:9px 16px;border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:all 0.2s}
+.btn-logout:hover{color:var(--white);border-color:rgba(255,255,255,0.4)}
+
+.dash-inner{max-width:1200px;margin:0 auto;padding:32px 24px}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.stat-card{background:var(--white);border:1px solid var(--border);padding:24px 20px}
+.stat-val{font-size:36px;font-weight:500;color:var(--black);letter-spacing:-0.02em;line-height:1}
+.stat-val span{font-style:italic;color:var(--gold)}
+.stat-label{font-size:12px;color:var(--mid);margin-top:6px;letter-spacing:0.04em}
+
+/* FILTERS */
+.filters{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+.filter-select{border:1px solid var(--border);background:var(--white);padding:9px 14px;font-family:var(--sans);font-size:13px;color:var(--black);outline:none;cursor:pointer}
+.filter-select:focus{border-color:var(--gold)}
+.filter-search{border:1px solid var(--border);background:var(--white);padding:9px 14px;font-family:var(--sans);font-size:13px;color:var(--black);outline:none;width:220px}
+.filter-search:focus{border-color:var(--gold)}
+.filter-search::placeholder{color:rgba(10,10,10,0.3)}
+.results-count{font-size:12px;color:var(--mid);margin-left:auto}
+
+/* TABLE */
+.table-wrap{background:var(--white);border:1px solid var(--border);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--black);color:var(--white);padding:12px 16px;text-align:left;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;cursor:pointer;user-select:none}
+thead th:hover{background:#1a1a1a}
+thead th .sort-arrow{margin-left:4px;opacity:0.4}
+thead th.sorted .sort-arrow{opacity:1;color:var(--gold)}
+tbody tr{border-bottom:1px solid var(--border);transition:background 0.15s}
+tbody tr:hover{background:var(--cream)}
+tbody td{padding:12px 16px;color:var(--black);white-space:nowrap}
+tbody td.mid{color:var(--mid)}
+.score-pill{display:inline-block;padding:3px 10px;font-size:11px;font-weight:600;letter-spacing:0.06em}
+.score-green{background:#e8f5ee;color:var(--green)}
+.score-gold{background:rgba(201,168,76,0.15);color:#8a6010}
+.score-amber{background:#fef3e2;color:#9a5f00}
+.score-red{background:#fdeaea;color:var(--red)}
+
+.empty-state{text-align:center;padding:60px 24px;color:var(--mid);font-size:14px}
+.loading{text-align:center;padding:40px;color:var(--mid);font-size:14px}
+
+/* PAGINATION */
+.pagination{display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--mid)}
+.page-btns{display:flex;gap:8px}
+.page-btn{background:var(--white);border:1px solid var(--border);padding:7px 14px;cursor:pointer;font-family:var(--sans);font-size:13px;transition:all 0.15s}
+.page-btn:hover{border-color:var(--gold);color:var(--gold)}
+.page-btn:disabled{opacity:0.4;cursor:not-allowed}
+.page-btn.active{background:var(--black);color:var(--white);border-color:var(--black)}
+
+@media(max-width:768px){
+  .stats-row{grid-template-columns:1fr 1fr}
+  .top-bar{padding:14px 20px}
+  .dash-inner{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-box">
+    <div class="login-logo">Yocket <span>Elite</span></div>
+    <div class="login-sub">Admin · Submissions Dashboard</div>
+    <input class="login-input" id="pwInput" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')login()"/>
+    <button class="login-btn" onclick="login()">Sign in</button>
+    <div class="login-error" id="loginError">Incorrect password</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <div class="top-bar">
+    <div class="top-bar-logo">Yocket <span>Elite</span> · Admin</div>
+    <div class="top-bar-right">
+      <button class="btn-csv" onclick="downloadCSV()">↓ Download CSV</button>
+      <button class="btn-logout" onclick="logout()">Sign out</button>
+    </div>
+  </div>
+
+  <div class="dash-inner">
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-val" id="stat-total">—</div>
+        <div class="stat-label">Total submissions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="stat-avg">—</div>
+        <div class="stat-label">Average score</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="stat-today">—</div>
+        <div class="stat-label">Submitted today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="stat-ivy">—<span>%</span></div>
+        <div class="stat-label">Targeting Ivy League</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <input class="filter-search" id="searchInput" placeholder="Search by name, email…" oninput="applyFilters()"/>
+      <select class="filter-select" id="filterGrade" onchange="applyFilters()">
+        <option value="">All grades</option>
+        <option value="8-9">Grade 8/9</option>
+        <option value="10">Grade 10</option>
+        <option value="11">Grade 11</option>
+        <option value="12">Grade 12</option>
+      </select>
+      <select class="filter-select" id="filterTarget" onchange="applyFilters()">
+        <option value="">All targets</option>
+        <option value="Ivy">Ivy League</option>
+        <option value="Top10">Top 10 US</option>
+        <option value="Top25">Top 25 US</option>
+        <option value="UK">UK Russell Group</option>
+        <option value="Undecided">Undecided</option>
+      </select>
+      <select class="filter-select" id="filterScore" onchange="applyFilters()">
+        <option value="">All scores</option>
+        <option value="high">Strong (85+)</option>
+        <option value="mid">Promising (70–84)</option>
+        <option value="dev">Developing (55–69)</option>
+        <option value="low">Early/Foundation (&lt;55)</option>
+      </select>
+      <div class="results-count" id="resultsCount"></div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <div class="loading" id="loadingMsg">Loading submissions…</div>
+      <table id="dataTable" style="display:none">
+        <thead>
+          <tr>
+            <th onclick="sortBy('created_at')">Date <span class="sort-arrow">↕</span></th>
+            <th onclick="sortBy('parent_name')">Parent <span class="sort-arrow">↕</span></th>
+            <th onclick="sortBy('child_name')">Child <span class="sort-arrow">↕</span></th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th onclick="sortBy('grade')">Grade <span class="sort-arrow">↕</span></th>
+            <th>Board</th>
+            <th onclick="sortBy('target')">Target <span class="sort-arrow">↕</span></th>
+            <th onclick="sortBy('total_score')">Score <span class="sort-arrow">↕</span></th>
+            <th>Academic</th>
+            <th>EC</th>
+            <th>Narrative</th>
+            <th>Commitment</th>
+            <th>Gap</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+      <div class="empty-state" id="emptyMsg" style="display:none">No submissions match your filters.</div>
+    </div>
+
+    <div class="pagination">
+      <div id="pageInfo">—</div>
+      <div class="page-btns">
+        <button class="page-btn" id="btnPrev" onclick="changePage(-1)" disabled>← Prev</button>
+        <button class="page-btn" id="btnNext" onclick="changePage(1)">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://mtwjsfttmzoecxdnqpcy.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10d2pzZnR0bXpvZWN4ZG5xcGN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzQ3NDYsImV4cCI6MjA5NjE1MDc0Nn0.zrYp_97_hUf4eoyGAJPWsxiqTh-33iYeXDhVu9rgYPU';
+const ADMIN_PASSWORD = 'yocket2026';
+
+let allData = [];
+let filtered = [];
+let sortCol = 'created_at';
+let sortAsc = false;
+let page = 1;
+const PAGE_SIZE = 50;
+
+function login() {
+  const pw = document.getElementById('pwInput').value;
+  if (pw === ADMIN_PASSWORD) {
+    document.getElementById('loginWrap').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadData();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+  }
+}
+
+function logout() {
+  document.getElementById('loginWrap').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('pwInput').value = '';
+}
+
+async function loadData() {
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/submissions?select=*&order=created_at.desc', {
+      method: 'GET',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json'
+      }
+    });
+    document.getElementById('loadingMsg').style.display = 'none';
+    if (!res.ok) {
+      const txt = await res.text();
+      document.getElementById('emptyMsg').textContent = 'Error loading data: ' + res.status;
+      document.getElementById('emptyMsg').style.display = 'block';
+      return;
+    }
+    const data = await res.json();
+    allData = data;
+    updateStats();
+    applyFilters();
+    document.getElementById('dataTable').style.display = 'table';
+  } catch(e) {
+    document.getElementById('loadingMsg').style.display = 'none';
+    document.getElementById('emptyMsg').textContent = 'Error: ' + e.message;
+    document.getElementById('emptyMsg').style.display = 'block';
+  }
+}
+
+function updateStats() {
+  const total = allData.length;
+  const avg = total ? Math.round(allData.reduce((s,r) => s + (r.total_score||0), 0) / total) : 0;
+  const today = allData.filter(r => {
+    if (!r.created_at) return false;
+    const d = new Date(r.created_at);
+    const n = new Date();
+    return d.getDate()===n.getDate() && d.getMonth()===n.getMonth() && d.getFullYear()===n.getFullYear();
+  }).length;
+  const ivyCount = allData.filter(r => r.target === 'Ivy').length;
+  const ivyPct = total ? Math.round((ivyCount/total)*100) : 0;
+
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-avg').textContent = avg;
+  document.getElementById('stat-today').textContent = today;
+  document.getElementById('stat-ivy').innerHTML = ivyPct + '<span>%</span>';
+}
+
+function applyFilters() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const grade  = document.getElementById('filterGrade').value;
+  const target = document.getElementById('filterTarget').value;
+  const score  = document.getElementById('filterScore').value;
+
+  filtered = allData.filter(r => {
+    if (search && !((r.parent_name||'').toLowerCase().includes(search) ||
+                    (r.child_name||'').toLowerCase().includes(search) ||
+                    (r.email||'').toLowerCase().includes(search))) return false;
+    if (grade  && r.grade  !== grade)  return false;
+    if (target && r.target !== target) return false;
+    if (score) {
+      const s = r.total_score || 0;
+      if (score==='high' && s < 85)  return false;
+      if (score==='mid'  && (s < 70 || s >= 85)) return false;
+      if (score==='dev'  && (s < 55 || s >= 70)) return false;
+      if (score==='low'  && s >= 55) return false;
+    }
+    return true;
+  });
+
+  page = 1;
+  sortData();
+  renderTable();
+  document.getElementById('resultsCount').textContent = `${filtered.length} result${filtered.length!==1?'s':''}`;
+}
+
+function sortBy(col) {
+  if (sortCol === col) sortAsc = !sortAsc;
+  else { sortCol = col; sortAsc = false; }
+  document.querySelectorAll('thead th').forEach(th => th.classList.remove('sorted'));
+  sortData();
+  renderTable();
+}
+
+function sortData() {
+  filtered.sort((a, b) => {
+    let va = a[sortCol], vb = b[sortCol];
+    if (sortCol === 'created_at') { va = new Date(va||0); vb = new Date(vb||0); }
+    else if (typeof va === 'number') { /* numeric */ }
+    else { va = (va||'').toLowerCase(); vb = (vb||'').toLowerCase(); }
+    if (va < vb) return sortAsc ? -1 : 1;
+    if (va > vb) return sortAsc ? 1 : -1;
+    return 0;
+  });
+}
+
+function renderTable() {
+  const start = (page-1)*PAGE_SIZE;
+  const pageData = filtered.slice(start, start+PAGE_SIZE);
+  const tbody = document.getElementById('tableBody');
+  const empty = document.getElementById('emptyMsg');
+
+  if (!filtered.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    document.getElementById('pageInfo').textContent = '0 results';
+    document.getElementById('btnPrev').disabled = true;
+    document.getElementById('btnNext').disabled = true;
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = pageData.map(r => {
+    const s = r.total_score || 0;
+    let pillClass = s>=85?'score-green':s>=70?'score-gold':s>=55?'score-amber':'score-red';
+    let band = s>=85?'Strong':s>=70?'Promising':s>=55?'Developing':'Early';
+    const date = r.created_at ? new Date(r.created_at).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'}) : '—';
+    const targetLabel = {'Ivy':'Ivy League','Top10':'Top 10 US','Top25':'Top 25 US','UK':'UK Russell','Undecided':'Undecided'}[r.target] || r.target || '—';
+    return `<tr>
+      <td class="mid">${date}</td>
+      <td>${r.parent_name||'—'}</td>
+      <td><strong>${r.child_name||'—'}</strong></td>
+      <td class="mid">${r.email||'—'}</td>
+      <td class="mid">${r.phone||'—'}</td>
+      <td>${r.grade||'—'}</td>
+      <td>${r.board||'—'}</td>
+      <td>${targetLabel}</td>
+      <td><span class="score-pill ${pillClass}">${s} · ${band}</span></td>
+      <td class="mid">${r.academic||0}/20</td>
+      <td class="mid">${r.extracurricular||0}/20</td>
+      <td class="mid">${r.narrative||0}/20</td>
+      <td class="mid">${r.commitment||0}/10</td>
+      <td class="mid">${r.gap||0}/30</td>
+    </tr>`;
+  }).join('');
+
+  const total = filtered.length;
+  const totalPages = Math.ceil(total/PAGE_SIZE);
+  document.getElementById('pageInfo').textContent = `Showing ${start+1}–${Math.min(start+PAGE_SIZE,total)} of ${total}`;
+  document.getElementById('btnPrev').disabled = page <= 1;
+  document.getElementById('btnNext').disabled = page >= totalPages;
+}
+
+function changePage(dir) {
+  page += dir;
+  renderTable();
+}
+
+function downloadCSV() {
+  const cols = ['id','created_at','parent_name','child_name','email','phone','grade','board','target','total_score','academic','extracurricular','narrative','commitment','gap'];
+  const header = cols.join(',');
+  const rows = filtered.map(r => cols.map(c => {
+    let v = r[c] ?? '';
+    if (typeof v === 'string' && (v.includes(',') || v.includes('"') || v.includes('\n'))) v = '"' + v.replace(/"/g,'""') + '"';
+    return v;
+  }).join(','));
+  const csv = [header, ...rows].join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `yocket-elite-submissions-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
