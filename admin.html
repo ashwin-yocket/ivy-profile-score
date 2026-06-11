@@ -9,40 +9,31 @@
 :root{--black:#0a0a0a;--white:#fafaf8;--cream:#f5f3ee;--gold:#c9a84c;--mid:#6a6a62;--border:rgba(10,10,10,0.1);--green:#2e7d52;--red:#c0392b;--sans:'DM Sans',system-ui,sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--sans);background:var(--cream);color:var(--black);min-height:100vh}
-
-/* LOGIN */
 .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
 .login-box{background:var(--white);border:1px solid var(--border);padding:48px 40px;width:100%;max-width:380px;text-align:center}
-.login-logo{font-size:20px;font-weight:600;margin-bottom:8px;letter-spacing:0.02em}
+.login-logo{font-size:20px;font-weight:600;margin-bottom:8px}
 .login-logo span{color:var(--gold);font-style:italic}
 .login-sub{font-size:13px;color:var(--mid);margin-bottom:32px}
 .login-input{width:100%;border:1px solid var(--border);padding:14px 16px;font-family:var(--sans);font-size:14px;outline:none;margin-bottom:12px;transition:border-color 0.2s}
 .login-input:focus{border-color:var(--gold)}
-.login-btn{width:100%;background:var(--black);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:500;padding:14px;border:none;cursor:pointer;transition:background 0.2s}
+.login-btn{width:100%;background:var(--black);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:500;padding:14px;border:none;cursor:pointer}
 .login-btn:hover{background:#222}
 .login-error{font-size:12px;color:var(--red);margin-top:10px;display:none}
-
-/* DASHBOARD */
 .dashboard{display:none}
 .top-bar{background:var(--black);padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
-.top-bar-logo{font-size:16px;font-weight:600;color:var(--white);letter-spacing:0.02em}
+.top-bar-logo{font-size:16px;font-weight:600;color:var(--white)}
 .top-bar-logo span{color:var(--gold);font-style:italic}
 .top-bar-right{display:flex;gap:12px;align-items:center}
-.btn-csv{background:var(--gold);color:var(--black);font-family:var(--sans);font-size:13px;font-weight:600;padding:9px 20px;border:none;cursor:pointer;transition:all 0.2s;letter-spacing:0.02em}
+.btn-csv{background:var(--gold);color:var(--black);font-family:var(--sans);font-size:13px;font-weight:600;padding:9px 20px;border:none;cursor:pointer}
 .btn-csv:hover{background:#dbb85a}
-.btn-logout{background:transparent;color:rgba(255,255,255,0.5);font-family:var(--sans);font-size:13px;padding:9px 16px;border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:all 0.2s}
+.btn-logout{background:transparent;color:rgba(255,255,255,0.5);font-family:var(--sans);font-size:13px;padding:9px 16px;border:1px solid rgba(255,255,255,0.15);cursor:pointer}
 .btn-logout:hover{color:var(--white);border-color:rgba(255,255,255,0.4)}
-
 .dash-inner{max-width:1200px;margin:0 auto;padding:32px 24px}
-
-/* STATS ROW */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
 .stat-card{background:var(--white);border:1px solid var(--border);padding:24px 20px}
 .stat-val{font-size:36px;font-weight:500;color:var(--black);letter-spacing:-0.02em;line-height:1}
 .stat-val span{font-style:italic;color:var(--gold)}
 .stat-label{font-size:12px;color:var(--mid);margin-top:6px;letter-spacing:0.04em}
-
-/* FILTERS */
 .filters{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
 .filter-select{border:1px solid var(--border);background:var(--white);padding:9px 14px;font-family:var(--sans);font-size:13px;color:var(--black);outline:none;cursor:pointer}
 .filter-select:focus{border-color:var(--gold)}
@@ -50,14 +41,11 @@ body{font-family:var(--sans);background:var(--cream);color:var(--black);min-heig
 .filter-search:focus{border-color:var(--gold)}
 .filter-search::placeholder{color:rgba(10,10,10,0.3)}
 .results-count{font-size:12px;color:var(--mid);margin-left:auto}
-
-/* TABLE */
 .table-wrap{background:var(--white);border:1px solid var(--border);overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead th{background:var(--black);color:var(--white);padding:12px 16px;text-align:left;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;cursor:pointer;user-select:none}
 thead th:hover{background:#1a1a1a}
-thead th .sort-arrow{margin-left:4px;opacity:0.4}
-thead th.sorted .sort-arrow{opacity:1;color:var(--gold)}
+.sort-arrow{margin-left:4px;opacity:0.4}
 tbody tr{border-bottom:1px solid var(--border);transition:background 0.15s}
 tbody tr:hover{background:var(--cream)}
 tbody td{padding:12px 16px;color:var(--black);white-space:nowrap}
@@ -67,30 +55,19 @@ tbody td.mid{color:var(--mid)}
 .score-gold{background:rgba(201,168,76,0.15);color:#8a6010}
 .score-amber{background:#fef3e2;color:#9a5f00}
 .score-red{background:#fdeaea;color:var(--red)}
-
 .empty-state{text-align:center;padding:60px 24px;color:var(--mid);font-size:14px}
 .loading{text-align:center;padding:40px;color:var(--mid);font-size:14px}
-
-/* PAGINATION */
 .pagination{display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--mid)}
 .page-btns{display:flex;gap:8px}
 .page-btn{background:var(--white);border:1px solid var(--border);padding:7px 14px;cursor:pointer;font-family:var(--sans);font-size:13px;transition:all 0.15s}
 .page-btn:hover{border-color:var(--gold);color:var(--gold)}
 .page-btn:disabled{opacity:0.4;cursor:not-allowed}
 .page-btn.active{background:var(--black);color:var(--white);border-color:var(--black)}
-.btn-view-report{background:var(--black);color:var(--white);font-family:var(--sans);font-size:11px;font-weight:500;padding:5px 12px;border:none;cursor:pointer;transition:background 0.15s;white-space:nowrap}
-.btn-view-report:hover{background:#333}
-
-@media(max-width:768px){
-  .stats-row{grid-template-columns:1fr 1fr}
-  .top-bar{padding:14px 20px}
-  .dash-inner{padding:20px 16px}
-}
+@media(max-width:768px){.stats-row{grid-template-columns:1fr 1fr}.top-bar{padding:14px 20px}.dash-inner{padding:20px 16px}}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div class="login-wrap" id="loginWrap">
   <div class="login-box">
     <div class="login-logo">Yocket <span>Elite</span></div>
@@ -101,40 +78,23 @@ tbody td.mid{color:var(--mid)}
   </div>
 </div>
 
-<!-- DASHBOARD -->
 <div class="dashboard" id="dashboard">
   <div class="top-bar">
     <div class="top-bar-logo">Yocket <span>Elite</span> · Admin</div>
     <div class="top-bar-right">
-      <button class="btn-csv" onclick="downloadCSV()">↓ Download CSV</button>
+      <button class="btn-csv" onclick="downloadCSV()">Download CSV</button>
       <button class="btn-logout" onclick="logout()">Sign out</button>
     </div>
   </div>
-
   <div class="dash-inner">
-    <!-- Stats -->
     <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-val" id="stat-total">—</div>
-        <div class="stat-label">Total submissions</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-val" id="stat-avg">—</div>
-        <div class="stat-label">Average score</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-val" id="stat-today">—</div>
-        <div class="stat-label">Submitted today</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-val" id="stat-ivy">—<span>%</span></div>
-        <div class="stat-label">Targeting Ivy League</div>
-      </div>
+      <div class="stat-card"><div class="stat-val" id="stat-total">—</div><div class="stat-label">Total submissions</div></div>
+      <div class="stat-card"><div class="stat-val" id="stat-avg">—</div><div class="stat-label">Average score</div></div>
+      <div class="stat-card"><div class="stat-val" id="stat-today">—</div><div class="stat-label">Submitted today</div></div>
+      <div class="stat-card"><div class="stat-val" id="stat-ivy">—<span>%</span></div><div class="stat-label">Targeting Ivy League</div></div>
     </div>
-
-    <!-- Filters -->
     <div class="filters">
-      <input class="filter-search" id="searchInput" placeholder="Search by name, email…" oninput="applyFilters()"/>
+      <input class="filter-search" id="searchInput" placeholder="Search by name, email..." oninput="applyFilters()"/>
       <select class="filter-select" id="filterGrade" onchange="applyFilters()">
         <option value="">All grades</option>
         <option value="8-9">Grade 8/9</option>
@@ -153,16 +113,14 @@ tbody td.mid{color:var(--mid)}
       <select class="filter-select" id="filterScore" onchange="applyFilters()">
         <option value="">All scores</option>
         <option value="high">Strong (85+)</option>
-        <option value="mid">Promising (70–84)</option>
-        <option value="dev">Developing (55–69)</option>
+        <option value="mid">Promising (70-84)</option>
+        <option value="dev">Developing (55-69)</option>
         <option value="low">Early/Foundation (&lt;55)</option>
       </select>
       <div class="results-count" id="resultsCount"></div>
     </div>
-
-    <!-- Table -->
     <div class="table-wrap">
-      <div class="loading" id="loadingMsg">Loading submissions…</div>
+      <div class="loading" id="loadingMsg">Loading submissions...</div>
       <table id="dataTable" style="display:none">
         <thead>
           <tr>
@@ -180,19 +138,17 @@ tbody td.mid{color:var(--mid)}
             <th>Narrative</th>
             <th>Commitment</th>
             <th>Gap</th>
-            <th>Report</th>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
       <div class="empty-state" id="emptyMsg" style="display:none">No submissions match your filters.</div>
     </div>
-
     <div class="pagination">
       <div id="pageInfo">—</div>
       <div class="page-btns">
-        <button class="page-btn" id="btnPrev" onclick="changePage(-1)" disabled>← Prev</button>
-        <button class="page-btn" id="btnNext" onclick="changePage(1)">Next →</button>
+        <button class="page-btn" id="btnPrev" onclick="changePage(-1)" disabled>Prev</button>
+        <button class="page-btn" id="btnNext" onclick="changePage(1)">Next</button>
       </div>
     </div>
   </div>
@@ -203,11 +159,7 @@ const SUPABASE_URL = 'https://mtwjsfttmzoecxdnqpcy.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10d2pzZnR0bXpvZWN4ZG5xcGN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1NzQ3NDYsImV4cCI6MjA5NjE1MDc0Nn0.zrYp_97_hUf4eoyGAJPWsxiqTh-33iYeXDhVu9rgYPU';
 const ADMIN_PASSWORD = 'yocket2026';
 
-let allData = [];
-let filtered = [];
-let sortCol = 'created_at';
-let sortAsc = false;
-let page = 1;
+let allData = [], filtered = [], sortCol = 'created_at', sortAsc = false, page = 1;
 const PAGE_SIZE = 50;
 
 function login() {
@@ -239,35 +191,31 @@ async function loadData() {
     });
     document.getElementById('loadingMsg').style.display = 'none';
     if (!res.ok) {
-      const txt = await res.text();
+      const t = await res.text();
       document.getElementById('emptyMsg').textContent = 'Error loading data: ' + res.status;
       document.getElementById('emptyMsg').style.display = 'block';
       return;
     }
-    const data = await res.json();
-    allData = data;
+    allData = await res.json();
     updateStats();
     applyFilters();
     document.getElementById('dataTable').style.display = 'table';
   } catch(e) {
     document.getElementById('loadingMsg').style.display = 'none';
-    document.getElementById('emptyMsg').textContent = 'Error: ' + e.message;
+    document.getElementById('emptyMsg').textContent = 'Failed to load data: ' + e.message;
     document.getElementById('emptyMsg').style.display = 'block';
   }
 }
 
 function updateStats() {
   const total = allData.length;
-  const avg = total ? Math.round(allData.reduce((s,r) => s + (r.total_score||0), 0) / total) : 0;
+  const avg = total ? Math.round(allData.reduce((s,r) => s+(r.total_score||0),0)/total) : 0;
   const today = allData.filter(r => {
     if (!r.created_at) return false;
-    const d = new Date(r.created_at);
-    const n = new Date();
+    const d = new Date(r.created_at), n = new Date();
     return d.getDate()===n.getDate() && d.getMonth()===n.getMonth() && d.getFullYear()===n.getFullYear();
   }).length;
-  const ivyCount = allData.filter(r => r.target === 'Ivy').length;
-  const ivyPct = total ? Math.round((ivyCount/total)*100) : 0;
-
+  const ivyPct = total ? Math.round((allData.filter(r=>r.target==='Ivy').length/total)*100) : 0;
   document.getElementById('stat-total').textContent = total;
   document.getElementById('stat-avg').textContent = avg;
   document.getElementById('stat-today').textContent = today;
@@ -279,45 +227,38 @@ function applyFilters() {
   const grade  = document.getElementById('filterGrade').value;
   const target = document.getElementById('filterTarget').value;
   const score  = document.getElementById('filterScore').value;
-
   filtered = allData.filter(r => {
-    if (search && !((r.parent_name||'').toLowerCase().includes(search) ||
-                    (r.child_name||'').toLowerCase().includes(search) ||
-                    (r.email||'').toLowerCase().includes(search))) return false;
+    if (search && !((r.parent_name||'').toLowerCase().includes(search)||(r.child_name||'').toLowerCase().includes(search)||(r.email||'').toLowerCase().includes(search))) return false;
     if (grade  && r.grade  !== grade)  return false;
     if (target && r.target !== target) return false;
     if (score) {
-      const s = r.total_score || 0;
-      if (score==='high' && s < 85)  return false;
-      if (score==='mid'  && (s < 70 || s >= 85)) return false;
-      if (score==='dev'  && (s < 55 || s >= 70)) return false;
-      if (score==='low'  && s >= 55) return false;
+      const s = r.total_score||0;
+      if (score==='high' && s<85)  return false;
+      if (score==='mid'  && (s<70||s>=85)) return false;
+      if (score==='dev'  && (s<55||s>=70)) return false;
+      if (score==='low'  && s>=55) return false;
     }
     return true;
   });
-
   page = 1;
   sortData();
   renderTable();
-  document.getElementById('resultsCount').textContent = `${filtered.length} result${filtered.length!==1?'s':''}`;
+  document.getElementById('resultsCount').textContent = filtered.length + ' result' + (filtered.length!==1?'s':'');
 }
 
 function sortBy(col) {
-  if (sortCol === col) sortAsc = !sortAsc;
-  else { sortCol = col; sortAsc = false; }
-  document.querySelectorAll('thead th').forEach(th => th.classList.remove('sorted'));
-  sortData();
-  renderTable();
+  if (sortCol===col) sortAsc=!sortAsc; else { sortCol=col; sortAsc=false; }
+  sortData(); renderTable();
 }
 
 function sortData() {
-  filtered.sort((a, b) => {
-    let va = a[sortCol], vb = b[sortCol];
-    if (sortCol === 'created_at') { va = new Date(va||0); vb = new Date(vb||0); }
-    else if (typeof va === 'number') { /* numeric */ }
-    else { va = (va||'').toLowerCase(); vb = (vb||'').toLowerCase(); }
-    if (va < vb) return sortAsc ? -1 : 1;
-    if (va > vb) return sortAsc ? 1 : -1;
+  filtered.sort((a,b) => {
+    let va=a[sortCol], vb=b[sortCol];
+    if (sortCol==='created_at'){va=new Date(va||0);vb=new Date(vb||0);}
+    else if (typeof va==='number'){}
+    else {va=(va||'').toLowerCase();vb=(vb||'').toLowerCase();}
+    if (va<vb) return sortAsc?-1:1;
+    if (va>vb) return sortAsc?1:-1;
     return 0;
   });
 }
@@ -327,7 +268,6 @@ function renderTable() {
   const pageData = filtered.slice(start, start+PAGE_SIZE);
   const tbody = document.getElementById('tableBody');
   const empty = document.getElementById('emptyMsg');
-
   if (!filtered.length) {
     tbody.innerHTML = '';
     empty.style.display = 'block';
@@ -337,187 +277,53 @@ function renderTable() {
     return;
   }
   empty.style.display = 'none';
-
   tbody.innerHTML = pageData.map(r => {
-    const s = r.total_score || 0;
-    let pillClass = s>=85?'score-green':s>=70?'score-gold':s>=55?'score-amber':'score-red';
-    let band = s>=85?'Strong':s>=70?'Promising':s>=55?'Developing':'Early';
+    const s = r.total_score||0;
+    const pillClass = s>=85?'score-green':s>=70?'score-gold':s>=55?'score-amber':'score-red';
+    const band = s>=85?'Strong':s>=70?'Promising':s>=55?'Developing':'Early';
     const date = r.created_at ? new Date(r.created_at).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'}) : '—';
-    const targetLabel = {'Ivy':'Ivy League','Top10':'Top 10 US','Top25':'Top 25 US','UK':'UK Russell','Undecided':'Undecided'}[r.target] || r.target || '—';
-    return `<tr>
-      <td class="mid">${date}</td>
-      <td>${r.parent_name||'—'}</td>
-      <td><strong>${r.child_name||'—'}</strong></td>
-      <td class="mid">${r.email||'—'}</td>
-      <td class="mid">${r.phone||'—'}</td>
-      <td>${r.grade||'—'}</td>
-      <td>${r.board||'—'}</td>
-      <td>${targetLabel}</td>
-      <td><span class="score-pill ${pillClass}">${s} · ${band}</span></td>
-      <td class="mid">${r.academic||0}/20</td>
-      <td class="mid">${r.extracurricular||0}/20</td>
-      <td class="mid">${r.narrative||0}/20</td>
-      <td class="mid">${r.commitment||0}/10</td>
-      <td class="mid">${r.gap||0}/30</td>
-       <td><button class="btn-view-report" onclick="viewReport(${JSON.stringify(r).split('"').join('&quot;')})">View →</button></td>
-    </tr>\`;
+    const tLabel = {'Ivy':'Ivy League','Top10':'Top 10 US','Top25':'Top 25 US','UK':'UK Russell','Undecided':'Undecided'}[r.target]||r.target||'—';
+    return '<tr>' +
+      '<td class="mid">' + date + '</td>' +
+      '<td>' + (r.parent_name||'—') + '</td>' +
+      '<td><strong>' + (r.child_name||'—') + '</strong></td>' +
+      '<td class="mid">' + (r.email||'—') + '</td>' +
+      '<td class="mid">' + (r.phone||'—') + '</td>' +
+      '<td>' + (r.grade||'—') + '</td>' +
+      '<td>' + (r.board||'—') + '</td>' +
+      '<td>' + tLabel + '</td>' +
+      '<td><span class="score-pill ' + pillClass + '">' + s + ' · ' + band + '</span></td>' +
+      '<td class="mid">' + (r.academic||0) + '/20</td>' +
+      '<td class="mid">' + (r.extracurricular||0) + '/20</td>' +
+      '<td class="mid">' + (r.narrative||0) + '/20</td>' +
+      '<td class="mid">' + (r.commitment||0) + '/10</td>' +
+      '<td class="mid">' + (r.gap||0) + '/30</td>' +
+      '</tr>';
   }).join('');
-
   const total = filtered.length;
   const totalPages = Math.ceil(total/PAGE_SIZE);
-  document.getElementById('pageInfo').textContent = `Showing ${start+1}-${Math.min(start+PAGE_SIZE,total)} of ${total}`;
-  document.getElementById('btnPrev').disabled = page <= 1;
-  document.getElementById('btnNext').disabled = page >= totalPages;
+  document.getElementById('pageInfo').textContent = 'Showing ' + (start+1) + '-' + Math.min(start+PAGE_SIZE,total) + ' of ' + total;
+  document.getElementById('btnPrev').disabled = page<=1;
+  document.getElementById('btnNext').disabled = page>=totalPages;
 }
 
-function changePage(dir) {
-  page += dir;
-  renderTable();
-}
+function changePage(dir) { page+=dir; renderTable(); }
 
 function downloadCSV() {
   const cols = ['id','created_at','parent_name','child_name','email','phone','grade','board','target','total_score','academic','extracurricular','narrative','commitment','gap'];
   const header = cols.join(',');
-  const rows = filtered.map(r => cols.map(c => {
-    let v = r[c] ?? '';
-    if (typeof v === 'string' && (v.includes(',') || v.includes('"') || v.includes('\n'))) v = '"' + v.replace(/"/g,'""') + '"';
+  const rows = filtered.map(r => cols.map(col => {
+    let v = r[col] != null ? r[col] : '';
+    if (typeof v==='string' && (v.includes(',')||v.includes('"')||v.includes('\n'))) v='"'+v.replace(/"/g,'""')+'"';
     return v;
   }).join(','));
-  const csv = [header, ...rows].join('\n');
-  const blob = new Blob([csv], {type:'text/csv'});
+  const csv = [header,...rows].join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = `yocket-elite-submissions-${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();
-  URL.revokeObjectURL(url);
+  a.href=url; a.download='yocket-submissions-'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click(); URL.revokeObjectURL(url);
 }
-function viewReport(r) {
-  const s = r.total_score || 0;
-  const child = r.child_name || 'Student';
-  const parent = r.parent_name || '';
-  const grade = r.grade || '—';
-  const board = r.board || '—';
-  const tLabel = {'Ivy':'Ivy League','Top10':'Top 10 US','Top25':'Top 25 US','UK':'UK Russell Group','Undecided':'Top Global Universities'}[r.target] || r.target || '—';
-  const academic = r.academic || 0;
-  const ec = r.extracurricular || 0;
-  const narrative = r.narrative || 0;
-  const commit = r.commitment || 0;
-  const gap = r.gap || 0;
-  const date = r.created_at ? new Date(r.created_at).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : '—';
-
-  // Band
-  let band, bandColor, tagText, tagBg, tagColor;
-  if (s>=85){band='Strong Foundation';bandColor='#2e7d52';tagText='✦ Competitive';tagBg='#e8f5ee';tagColor='#2e7d52';}
-  else if(s>=70){band='Promising Profile';bandColor='#c9a84c';tagText='→ Gaps to close';tagBg='rgba(201,168,76,0.15)';tagColor='#8a6010';}
-  else if(s>=55){band='Developing Profile';bandColor='#d4820a';tagText='⚠ Plan needed now';tagBg='#fef3e2';tagColor='#9a5f00';}
-  else if(s>=40){band='Early Stage';bandColor='#c0392b';tagText='↑ Start immediately';tagBg='#fdeaea';tagColor='#8b0000';}
-  else{band='Foundation Stage';bandColor='#c0392b';tagText='! Intervention needed';tagBg='#fdeaea';tagColor='#8b0000';}
-
-  function barColor(pct){return pct>=60?'#2e7d52':pct>=40?'#c9a84c':'#c0392b';}
-  function gapText(){
-    let gaps=[];
-    if(academic<12) gaps.push('academic scores are below the typical admit threshold');
-    if(ec<10) gaps.push('extracurricular depth needs significant development');
-    if(narrative<8) gaps.push('activities are not yet connected to a clear story or direction');
-    if(commit<4) gaps.push('there is no sustained creative or long-term commitment visible');
-    let t = '<strong>'+child+'</strong> is in Grade '+(grade==='8-9'?'8/9':grade)+', targeting '+tLabel+'. ';
-    if(!gaps.length) t+='The profile is already competitive across most dimensions. The plan should focus on sharpening the narrative and targeting the right opportunities.';
-    else if(gaps.length===1) t+='The profile is largely strong, but '+gaps[0]+'. A targeted plan can close this gap before applications open.';
-    else{const last=gaps.pop();t+='Key gaps: '+gaps.join(', ')+', and '+last+'. A structured plan can address each systematically.';}
-    return t;
-  }
-  function insightCard(score,max,num,title,good,bad){
-    const pct=(score/max)*100;const isGood=pct>=60;
-    const bg=isGood?'#e8f5ee':'#fdeaea';const col=isGood?'#2e7d52':'#c0392b';
-    const txt=isGood?good:bad;
-    return '<div style="border:1px solid #e0e0e0;padding:16px 20px;margin-bottom:8px;display:flex;gap:14px;align-items:flex-start;"><div style="width:32px;height:32px;border-radius:50%;background:'+bg+';color:'+col+';display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">'+num+'</div><div><div style="font-size:12px;font-weight:600;color:#0a0a0a;margin-bottom:3px">'+title+' — '+score+'/'+max+'</div><div style="font-size:12px;color:#6a6a62;line-height:1.65">'+txt+'</div></div></div>';
-  }
-
-  const circ = 2*Math.PI*68;
-  const offset = circ - (s/100)*circ;
-
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>Yocket Elite · ${child} · Profile Report</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"DM Sans",sans-serif;background:#fafaf8;color:#0a0a0a}
-.header{background:#0a0a0a;padding:40px 24px;text-align:center}
-.eyebrow{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#c9a84c;display:block;margin-bottom:10px}
-.report-name{font-family:"Cormorant Garamond",serif;font-size:44px;font-weight:600;font-style:italic;color:#fafaf8;margin-bottom:6px}
-.subline{font-size:13px;color:rgba(250,250,248,0.45);margin-bottom:28px}
-.dial-wrap{display:flex;flex-direction:column;align-items:center;margin:0 auto 20px}
-.score-big{font-family:"Cormorant Garamond",serif;font-size:52px;font-weight:600;color:#fafaf8;line-height:1}
-.score-denom{font-size:13px;color:rgba(250,250,248,0.4)}
-.band-label{margin-top:10px;font-size:13px;font-weight:500;color:#fafaf8}
-.band-tag{display:inline-block;padding:3px 12px;font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-top:5px;background:${tagBg};color:${tagColor}}
-.body{max-width:640px;margin:0 auto;padding:32px 24px 60px}
-.section-label{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#c9a84c;display:block;margin-bottom:12px}
-.dim-row{display:grid;grid-template-columns:120px 1fr 56px;gap:10px;align-items:center;margin-bottom:16px}
-.dim-label{font-size:12px;font-weight:500;color:#6a6a62;line-height:1.4}
-.bar-wrap{height:6px;background:#e0e0e0;border-radius:3px;overflow:hidden}
-.bar-fill{height:100%;border-radius:3px}
-.dim-score{font-family:"Cormorant Garamond",serif;font-size:17px;font-weight:600;text-align:right}
-.gap-box{border:1px solid #e0e0e0;padding:22px;background:#f5f3ee;margin-bottom:10px}
-.gap-box p{font-size:14px;line-height:1.8}
-.cta{background:#0a0a0a;padding:40px 24px;text-align:center;margin-top:40px}
-.cta-title{font-family:"Cormorant Garamond",serif;font-size:36px;font-weight:500;color:#fafaf8;margin-bottom:10px}
-.cta-title em{font-style:italic;color:#c9a84c}
-.cta-sub{font-size:13px;color:rgba(250,250,248,0.45);margin-bottom:24px;line-height:1.7}
-.cta-btn{display:inline-block;background:#c9a84c;color:#0a0a0a;font-family:"DM Sans",sans-serif;font-size:14px;font-weight:700;padding:15px 36px;text-decoration:none;letter-spacing:0.02em}
-.meta{font-size:11px;color:#aaa;text-align:right;margin-bottom:20px}
-hr{border:none;border-top:1px solid #e0e0e0;margin:28px 0}
-@media print{.cta{-webkit-print-color-adjust:exact;print-color-adjust:exact}.header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-</style></head><body>
-<div class="header">
-  <span class="eyebrow">Yocket Elite · Ivy Profile Score</span>
-  <div class="report-name">${child}'s Profile Score</div>
-  <div class="subline">Grade ${grade==='8-9'?'8/9':grade} · ${board} · Targeting ${tLabel}</div>
-  <div class="dial-wrap">
-    <svg width="140" height="140" viewBox="0 0 160 160" style="transform:rotate(-90deg)">
-      <circle cx="80" cy="80" r="68" stroke="rgba(255,255,255,0.08)" stroke-width="10" fill="none"/>
-      <circle cx="80" cy="80" r="68" stroke="${bandColor}" stroke-width="10" fill="none" stroke-dasharray="427" stroke-dashoffset="${offset}" stroke-linecap="round"/>
-    </svg>
-    <div style="margin-top:-10px">
-      <div class="score-big">${s}</div>
-      <div class="score-denom">/ 100</div>
-    </div>
-    <div class="band-label">${band}</div>
-    <div class="band-tag">${tagText}</div>
-  </div>
-</div>
-<div class="body">
-  <div class="meta">Report generated: ${date} · Parent: ${parent}</div>
-  <span class="section-label">Score Breakdown</span>
-  <div class="dim-row"><div class="dim-label">Academic<br>Strength</div><div class="bar-wrap"><div class="bar-fill" style="width:${(academic/20)*100}%;background:${barColor((academic/20)*100)}"></div></div><div class="dim-score" style="color:${barColor((academic/20)*100)}">${academic}/20</div></div>
-  <div class="dim-row"><div class="dim-label">Extracurricular<br>Depth</div><div class="bar-wrap"><div class="bar-fill" style="width:${(ec/20)*100}%;background:${barColor((ec/20)*100)}"></div></div><div class="dim-score" style="color:${barColor((ec/20)*100)}">${ec}/20</div></div>
-  <div class="dim-row"><div class="dim-label">Personal<br>Narrative</div><div class="bar-wrap"><div class="bar-fill" style="width:${(narrative/20)*100}%;background:${barColor((narrative/20)*100)}"></div></div><div class="dim-score" style="color:${barColor((narrative/20)*100)}">${narrative}/20</div></div>
-  <div class="dim-row"><div class="dim-label">Sustained<br>Commitment</div><div class="bar-wrap"><div class="bar-fill" style="width:${(commit/10)*100}%;background:${barColor((commit/10)*100)}"></div></div><div class="dim-score" style="color:${barColor((commit/10)*100)}">${commit}/10</div></div>
-  <div class="dim-row"><div class="dim-label">Competitive<br>Gap</div><div class="bar-wrap"><div class="bar-fill" style="width:${(gap/30)*100}%;background:${barColor((gap/30)*100)}"></div></div><div class="dim-score" style="color:${barColor((gap/30)*100)}">${gap}/30</div></div>
-  <hr/>
-  <span class="section-label">Gap Analysis</span>
-  <div class="gap-box"><p>${gapText()}</p></div>
-  <hr/>
-  <span class="section-label">What Each Score Means</span>
-  ${insightCard(academic,20,'①','Academic Strength','Academic profile is strong relative to target university benchmarks.','Scores are below what Ivy League and top universities typically expect. This is the hardest gap to close — it requires consistent effort over time.')}
-  ${insightCard(ec,20,'②','Extracurricular Depth','Strong external recognition and activity depth. This will stand out in the application.','Activities need more depth, external recognition, or research-level work. Ivy League readers rate a "1" only for national-level achievement.')}
-  ${insightCard(narrative,20,'③','Personal Narrative','Activities connect to a clear, coherent story — this is rare and highly valued.','Without a connecting theme, the profile reads as scattered. A defined brand story is the single biggest upgrade a counsellor can provide.')}
-  ${insightCard(commit,10,'④','Sustained Commitment','A long-term creative or athletic pursuit adds genuine character depth.','No sustained pursuit is visible. Universities value dedication over time — this dimension is built, not found.')}
-  ${insightCard(gap,30,'⑤','Competitive Gap','Given the timeline and board, your child has meaningful runway to build a competitive application.','The gap between current profile and target university expectations is significant — and the timeline is tight. Every month matters.')}
-  <div class="cta">
-    <div class="cta-title">This report is a diagnosis.<br><em>Not a prescription.</em></div>
-    <p class="cta-sub">A score tells you where your child is today.<br>A plan tells you what to do next. That is a different conversation.</p>
-    <a class="cta-btn" href="https://calendly.com/sandesh-vp-yocket/new-meeting" target="_blank">Book a FREE session with Aditi now →</a>
-  </div>
-</div>
-</body></html>`;
-
-  const w = window.open('', '_blank');
-  w.document.write(html);
-  w.document.close();
-  setTimeout(function(){ w.print(); }, 800);
-}
-
 </script>
 </body>
 </html>
